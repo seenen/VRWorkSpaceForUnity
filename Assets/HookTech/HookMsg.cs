@@ -83,7 +83,7 @@ public class HookMsg : MonoBehaviour
 
     private void HookLoad()
     {
-        Debug.Log("开始运行");
+        Debuger.Log("开始运行");
         //安装钩子
         {
             //钩子委托
@@ -93,14 +93,14 @@ public class HookMsg : MonoBehaviour
             idHook = SetWindowsHookEx(WH_CALLWNDPROC, lpfn, hInstance, (uint)AppDomain.GetCurrentThreadId());
             if (idHook > 0)
             {
-                Debug.Log("钩子[" + idHook + "]安装成功");
+                Debuger.Log("钩子[" + idHook + "]安装成功");
                 isHook = true;
                 //保持活动 避免 回调过程 被垃圾回收
                 gc = GCHandle.Alloc(lpfn);
             }
             else
             {
-                Debug.Log("钩子安装失败");
+                Debuger.Log("钩子安装失败");
                 isHook = false;
                 UnhookWindowsHookEx(idHook);
             }
@@ -148,7 +148,7 @@ public class HookMsg : MonoBehaviour
 
                 IntPtr intp = new IntPtr(entries1.cbBuffer);
                 string str = new string((sbyte*)intp);
-                Debug.Log("json数据：" + str);
+                Debuger.Log("json数据：" + str);
             }
             if (CallNextProc)
             {
@@ -162,7 +162,7 @@ public class HookMsg : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log(ex.Message);
+            Debuger.Log(ex.Message);
             return 0;
         }
 

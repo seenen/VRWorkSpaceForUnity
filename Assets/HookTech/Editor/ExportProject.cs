@@ -27,8 +27,8 @@ public class ExportProject : EditorWindow
         {
             //string path = EditorUtility.OpenFolderPanel("Select Saved Path", "", "Heros");
 
-            Debug.Log(EditorApplication.applicationPath);
-            Debug.Log(Application.dataPath);
+            Debuger.Log(EditorApplication.applicationPath);
+            Debuger.Log(Application.dataPath);
 
             //if (!string.IsNullOrEmpty(path))
             {

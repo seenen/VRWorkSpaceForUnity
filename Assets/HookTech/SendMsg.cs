@@ -68,7 +68,7 @@ public class SendMsg : MonoBehaviour
     private void sendJson()
     {
         IntPtr hWndPalaz = FindWindow(null, "钩子窗体");//就是窗体的的标题
-        Debug.Log(hWndPalaz);
+        Debuger.Log(hWndPalaz);
         if (hWndPalaz != null)
         {
             //获得游戏本身句柄 
@@ -82,7 +82,7 @@ public class SendMsg : MonoBehaviour
 
 
             string uRstr = JsonFx.Json.JsonWriter.Serialize(jsStart);
-            Debug.Log(uRstr);
+            Debuger.Log(uRstr);
             //string uRstr = jsStart.ToString();
             byte[] bytes = Encoding.UTF8.GetBytes(uRstr);
             IntPtr pData = Marshal.AllocHGlobal(2 * bytes.Length);

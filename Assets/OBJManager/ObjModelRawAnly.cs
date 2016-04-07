@@ -4,6 +4,7 @@ using LibraryGeometryFormat;
 using System;
 using System.Globalization;
 using System.Collections.Generic;
+using VRClient;
 
 public class ObjModelRawAnly
 {
@@ -41,6 +42,30 @@ public class ObjModelRawAnly
         buffer = new GeometryBuffer();
     }
 
+    VBOBuffer mVBOBuffer = null;
+    public ObjModelRawAnly(VBOBuffer omr)
+    {
+        mVBOBuffer = omr;
+
+        buffer = new GeometryBuffer();
+
+        buffer.objects.Clear();
+
+        foreach (ObjectData _od in omr.objects)
+            buffer.objects.Add(_od);
+
+        foreach (_Vector3 _v3 in omr.vertices)
+            buffer.vertices.Add(new Vector3(_v3.X, _v3.Y, _v3.Z));
+
+        foreach (_Vector2 _v2 in omr.uvs)
+            buffer.uvs.Add(new Vector2(_v2.X, _v2.Y));
+
+        foreach (_Vector3 _n in omr.normals)
+            buffer.normals.Add(new Vector3(_n.X, _n.Y, _n.Z));
+
+        buffer.triangles = omr.triangles.ToArray();
+    }
+
     public void SetGeometryData(string data)
     {
         string[] lines = data.Split("\n\r".ToCharArray());
@@ -73,7 +98,7 @@ public class ObjModelRawAnly
                     for (int j = 1; j < p.Length; j++)
                     {
                         string[] c = p[j].Trim().Split("/".ToCharArray());
-                        FaceIndices fi = new FaceIndices();
+                        VRClient.FaceIndices fi = new VRClient.FaceIndices();
                         fi.vi = ci(c[0]) - 1;
                         if (c.Length > 1 && c[1] != "") fi.vu = ci(c[1]) - 1;
                         if (c.Length > 2 && c[2] != "") fi.vn = ci(c[2]) - 1;

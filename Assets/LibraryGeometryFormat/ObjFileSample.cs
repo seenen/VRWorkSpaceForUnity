@@ -12,9 +12,9 @@ public class ObjFileSample : MonoBehaviour {
 
         GameObject.Find("_Message_").SendMessage("RenderObj", of.Models[0]);
 
-        Debug.Log("本地 顶点：" + modelMesh.vertexCount);
-        Debug.Log("本地 三角形：" + modelMesh.triangles.Length);
-        Debug.Log("本地 法线：" + modelMesh.normals.Length);
+        Debuger.Log("本地 顶点：" + modelMesh.vertexCount);
+        Debuger.Log("本地 三角形：" + modelMesh.triangles.Length);
+        Debuger.Log("本地 法线：" + modelMesh.normals.Length);
 
     }
 

@@ -39,6 +39,8 @@ namespace VRClient
                 var fullBytes = ms.GetBuffer(); //获取储存在内存流里面的字节数据  
                 Array.Copy(fullBytes, bytes, bytes.Length); //将保存在 fullBytes内存流里的数据拷贝到bytes里。  
 
+                bytes = CompressionHelper.Compress(bytes);
+
                 string json = Convert.ToBase64String(bytes);
 
                 ms.Close();
@@ -51,6 +53,8 @@ namespace VRClient
         public static T DecodeMessageByProtobuf<T>(string text)
         {
             byte[] bytes = Convert.FromBase64String(text);
+
+            bytes = CompressionHelper.DeCompress(bytes);
 
             using (var ms = new MemoryStream(bytes)) //(声明一个内存流对象)  
             {

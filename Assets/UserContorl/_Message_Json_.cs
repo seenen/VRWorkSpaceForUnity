@@ -10,11 +10,56 @@ public class _Message_Json_ : MonoBehaviour
 {
     void Start()
     {
+        Debuger.EnableLog = true;
+
 #if UNITY_EDITOR
 
-        StartCoroutine(Load());
+        //StartCoroutine(Load());
+        StartCoroutine(LoadVBO());
 #endif
 
+    }
+    public IEnumerator LoadVBO()
+    {
+        {
+            string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
+
+            WWW loader = new WWW(path);
+
+            yield return loader;
+
+            ///拿到一个GB对象
+            ObjModelRaw omr = new ObjModelRaw();
+            omr.id = 0;
+            omr.content = loader.text;
+            omr.state = ObjModelRawState.Create;
+
+            ObjModelRawAnly o = new ObjModelRawAnly(omr);
+            o.SetGeometryData(omr.content);
+            o.buffer.PopulateMeshes();
+
+            //  构造一个VBO对象
+
+            VBOBuffer vbo = new VBOBuffer();
+            vbo.objects.AddRange(o.buffer.objects);
+            foreach(Vector3 v3 in o.buffer.vertices)
+                vbo.vertices.Add(new _Vector3(v3.x, v3.y, v3.z));
+            foreach(Vector2 v2 in o.buffer.uvs)
+                vbo.uvs.Add(new _Vector2(v2.x, v2.y));
+            foreach(Vector3 v3 in o.buffer.normals)
+                vbo.normals.Add(new _Vector3(v3.x, v3.y, v3.z));
+            foreach(int i in o.buffer.triangles)
+                vbo.triangles.Add(i);
+            vbo.state = ObjModelRawState.Create;
+
+            //  序列化
+            string output = EditorMessageDecoder.EncodeMessageByProtobuf<VBOBuffer>(vbo);
+            RenderVBOBuffer(vbo);
+
+            loader.Dispose();
+            loader = null;
+
+        }
     }
 
     public IEnumerator Load()
@@ -74,9 +119,11 @@ public class _Message_Json_ : MonoBehaviour
 
     int bufflen = 0;
 
+    int start = 0;
+
     void _Message_Json_Recv(string content)
     {
-        Debug.Log("_Message_Json_Recv " + content.Length);
+        //Debuger.Log("_Message_Json_Recv " + content.Length);
 
         try
         {
@@ -92,14 +139,21 @@ public class _Message_Json_ : MonoBehaviour
 
                 bufflen += content.Length;
 
-                Debug.Log("[bufflen:] " + bufflen);
+                //float start = Time.realtimeSinceStartup;
+
+                //Debuger.Log("[bufflen:] " + bufflen);
 
                 //object obj = EditorMessageDecoder.DecodeMessage(buff);
                 //ObjModelRaw obj = EditorMessageDecoder.DecodeMessage<ObjModelRaw>(buff);
-                ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(buff);
+                //ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(buff);
+                VBOBuffer obj = EditorMessageDecoder.DecodeMessageByProtobuf<VBOBuffer>(buff);
 
-                RenderObjRaw(obj);
-                //Debug.Log(" [obj:] " + obj);
+                //Debuger.Log("DecodeMessageByProtobuf " + (System.DateTime.Now.Millisecond - obj.t) / 1000.0f / 1000.0f + " s");
+                Debuger.Log("DecodeMessageByProtobuf " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
+
+                ////RenderObjRaw(obj);
+                RenderVBOBuffer(obj);
+                //Debuger.Log(" [obj:] " + obj);
 
                 //if (obj is ObjModel) RenderObj((ObjModel)obj);
 
@@ -107,21 +161,30 @@ public class _Message_Json_ : MonoBehaviour
 
                 buff = string.Empty;
 
-                Debug.Log(" Done ");
+                start = System.DateTime.Now.Millisecond;
+
+                Debuger.Log(" Done ");
             }
         }
         catch (Exception e)
         {
-            Debug.LogWarning(e);
+            Debuger.LogWarning(e);
         }
 
     }
 
     void RenderObjRaw(ObjModelRaw om)
     {
-        //Debug.Log("RenderObjRaw" + om.state);
+        //Debuger.Log("RenderObjRaw" + om.state);
 
         mObjModelRawMgr.Update(om);
+    }
+
+    void RenderVBOBuffer(VBOBuffer vbo)
+    {
+        Debuger.Log("RenderVBOBuffer" + vbo.objects.Count);
+
+        mObjModelRawMgr.Update(vbo);
     }
 
     void RenderObj(ObjModel om)
@@ -153,7 +216,7 @@ public class _Message_Json_ : MonoBehaviour
         MeshRenderer mr = (MeshRenderer)go.AddComponent(typeof(MeshRenderer));
 
         //  顶点
-        Debug.Log("顶点：" + newVerts.Length);
+        Debuger.Log("顶点：" + newVerts.Length);
 
         Mesh mesh = new Mesh();
         mesh.vertices = new Vector3[newVerts.Length];
@@ -169,7 +232,7 @@ public class _Message_Json_ : MonoBehaviour
             mesh.vertices[i] = v3;
         }
 
-        Debug.Log("三角形：" + om.faceList.Count);
+        Debuger.Log("三角形：" + om.faceList.Count);
 
         List<int> triangles = new List<int>();
         for (int i = 0; i < om.faceList.Count; ++i)
@@ -180,7 +243,7 @@ public class _Message_Json_ : MonoBehaviour
         }
         mesh.triangles = triangles.ToArray();
 
-        Debug.Log("法向量：" + om.normalList.Count);
+        Debuger.Log("法向量：" + om.normalList.Count);
         mesh.normals = new Vector3[om.normalList.Count];
         for (int i = 0; i < om.normalList.Count; ++i)
         {

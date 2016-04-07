@@ -50,14 +50,14 @@ public class Smooth : IDisposable
 
         Mesh2_Mesh();
 
-        Debug.Log("Mesh2_Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
+        Debuger.Log("Mesh2_Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
         before = System.DateTime.Now.Ticks;
 
         //PlyManager.Output(smoothMesh, "E:\\engine.ply");
         //ObjManager.Output(smoothMesh, "E:\\engine.obj");
 
         //XJBG();
-        //Debug.Log("XJBG " + (System.DateTime.Now.Ticks - before) / 10000000.0);
+        //Debuger.Log("XJBG " + (System.DateTime.Now.Ticks - before) / 10000000.0);
 
         before = System.DateTime.Now.Ticks;
 
@@ -69,7 +69,7 @@ public class Smooth : IDisposable
 
         _Mesh2Mesh();
 
-        Debug.Log("_Mesh2Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
+        Debuger.Log("_Mesh2Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
         before = System.DateTime.Now.Ticks;
 
         //ObjManager.Output(objMesh, "E:\\engine_smooth.obj");
@@ -80,7 +80,7 @@ public class Smooth : IDisposable
     void Mesh2_Mesh()
     {
 
-        Debug.Log("Mesh V: " + objMesh.vertexCount + " T: " + objMesh.triangles.Length);
+        Debuger.Log("Mesh V: " + objMesh.vertexCount + " T: " + objMesh.triangles.Length);
 
         /// 顶点转换
         for (int i = 0; i < objMesh.vertexCount; ++i )
@@ -117,7 +117,7 @@ public class Smooth : IDisposable
         {
             _Vector3 _sv = smoothMesh.Vertices[i];
 
-            //Debug.Log(objMesh.vertices[i].ToString() + " -> " + _sv.X + " " + _sv.Y + " " + _sv.Z);
+            //Debuger.Log(objMesh.vertices[i].ToString() + " -> " + _sv.X + " " + _sv.Y + " " + _sv.Z);
 
             retVec3[i].x = _sv.X;
             retVec3[i].y = _sv.Y;
@@ -138,7 +138,7 @@ public class Smooth : IDisposable
 
         GeometryBuffer2_Mesh();
 
-        Debug.Log("GeometryBuffer2_Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
+        Debuger.Log("GeometryBuffer2_Mesh " + (System.DateTime.Now.Ticks - before) / 10000000.0);
         before = System.DateTime.Now.Ticks;
 
         //_MeshLaplacian();
@@ -147,7 +147,7 @@ public class Smooth : IDisposable
 
         _Mesh2GeometryBuffer();
 
-        Debug.Log("_Mesh2GeometryBuffer " + (System.DateTime.Now.Ticks - before) / 10000000.0);
+        Debuger.Log("_Mesh2GeometryBuffer " + (System.DateTime.Now.Ticks - before) / 10000000.0);
         before = System.DateTime.Now.Ticks;
 
         //ObjManager.Output(objMesh, "E:\\engine_smooth.obj");
@@ -158,7 +158,7 @@ public class Smooth : IDisposable
 
     void GeometryBuffer2_Mesh()
     {
-        Debug.Log("GeometryBuffer V: " + mGB.vertices.Count + " T: " + mGB.triangles.Length);
+        Debuger.Log("GeometryBuffer V: " + mGB.vertices.Count + " T: " + mGB.triangles.Length);
 
         /// 顶点转换
         for (int i = 0; i < mGB.vertices.Count; ++i)
@@ -193,7 +193,7 @@ public class Smooth : IDisposable
         {
             _Vector3 _sv = smoothMesh.Vertices[i];
 
-            //Debug.Log(objMesh.vertices[i].ToString() + " -> " + _sv.X + " " + _sv.Y + " " + _sv.Z);
+            //Debuger.Log(objMesh.vertices[i].ToString() + " -> " + _sv.X + " " + _sv.Y + " " + _sv.Z);
             mGB.vertices[i] = new Vector3(_sv.X, _sv.Y, _sv.Z);
             //mGB.vertices[i].x = _sv.X;
             //mGB.vertices[i].y = _sv.Y;
@@ -344,7 +344,7 @@ public class Smooth : IDisposable
         }
         catch(Exception e)
         {
-            Debug.LogException(e);
+            Debuger.LogWarning(e);
         }  
 
         return null;

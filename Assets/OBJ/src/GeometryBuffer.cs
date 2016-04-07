@@ -3,10 +3,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using VRClient;
 
-public class GeometryBuffer {
+public class GeometryBuffer
+{
 
-	private List<ObjectData> objects;
+    public List<ObjectData> objects;
 	public List<Vector3> vertices;
 	public List<Vector2> uvs;
 	public List<Vector3> normals;
@@ -17,26 +19,26 @@ public class GeometryBuffer {
 
     //
     private ObjectData current;
-	private class ObjectData {
-		public string name;
-		public List<GroupData> groups;
-		public List<FaceIndices> allFaces;
-		public ObjectData() {
-			groups = new List<GroupData>();
-			allFaces = new List<FaceIndices>();
-		}
-	}
+	////private class ObjectData {
+	////	public string name;
+	////	public List<GroupData> groups;
+	////	public List<FaceIndices> allFaces;
+	////	public ObjectData() {
+	////		groups = new List<GroupData>();
+	////		allFaces = new List<FaceIndices>();
+	////	}
+	////}
 	
 	private GroupData curgr;
-	private class GroupData {
-		public string name;
-		public string materialName;
-		public List<FaceIndices> faces;
-		public GroupData() {
-			faces = new List<FaceIndices>();
-		}
-		public bool isEmpty { get { return faces.Count == 0; } }
-	}
+	////private class GroupData {
+	////	public string name;
+	////	public string materialName;
+	////	public List<FaceIndices> faces;
+	////	public GroupData() {
+	////		faces = new List<FaceIndices>();
+	////	}
+	////	public bool isEmpty { get { return faces.Count == 0; } }
+	////}
 	
 	public GeometryBuffer() {
 		objects = new List<ObjectData>();
@@ -56,7 +58,7 @@ public class GeometryBuffer {
 	}
 	
 	public void PushObject(string name) {
-		//Debug.Log("Adding new object " + name + ". Current is empty: " + isEmpty);
+		//Debuger.Log("Adding new object " + name + ". Current is empty: " + isEmpty);
 		if(isEmpty) objects.Remove(current);
 		
 		ObjectData n = new ObjectData();
@@ -80,7 +82,7 @@ public class GeometryBuffer {
 	}
 	
 	public void PushMaterialName(string name) {
-		//Debug.Log("Pushing new material " + name + " with curgr.empty=" + curgr.isEmpty);
+		//Debuger.Log("Pushing new material " + name + " with curgr.empty=" + curgr.isEmpty);
 		if(!curgr.isEmpty) PushGroup(name);
 		if(curgr.name == "default") curgr.name = name;
 		curgr.materialName = name;
@@ -104,14 +106,14 @@ public class GeometryBuffer {
 	}
 	
 	public void Trace() {
-		Debug.Log("OBJ has " + objects.Count + " object(s)");
-		Debug.Log("OBJ has " + vertices.Count + " vertice(s)");
-		Debug.Log("OBJ has " + uvs.Count + " uv(s)");
-		Debug.Log("OBJ has " + normals.Count + " normal(s)");
+		Debuger.Log("OBJ has " + objects.Count + " object(s)");
+		Debuger.Log("OBJ has " + vertices.Count + " vertice(s)");
+		Debuger.Log("OBJ has " + uvs.Count + " uv(s)");
+		Debuger.Log("OBJ has " + normals.Count + " normal(s)");
 		foreach(ObjectData od in objects) {
-			Debug.Log(od.name + " has " + od.groups.Count + " group(s)");
+			Debuger.Log(od.name + " has " + od.groups.Count + " group(s)");
 			foreach(GroupData gd in od.groups) {
-				Debug.Log(od.name + "/" + gd.name + " has " + gd.faces.Count + " faces(s)");
+				Debuger.Log(od.name + "/" + gd.name + " has " + gd.faces.Count + " faces(s)");
 			}
 		}
 		
