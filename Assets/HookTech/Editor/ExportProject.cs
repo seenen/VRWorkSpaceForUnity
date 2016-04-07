@@ -23,7 +23,7 @@ public class ExportProject : EditorWindow
         if (skin == null)
             skin = new GUISkin();
 
-        if (GUILayout.Button("Build", GUILayout.ExpandWidth(true)))
+        if (GUILayout.Button("Build_Hook", GUILayout.ExpandWidth(true)))
         {
             //string path = EditorUtility.OpenFolderPanel("Select Saved Path", "", "Heros");
 
@@ -37,9 +37,26 @@ public class ExportProject : EditorWindow
             }
         }
 
+        if (GUILayout.Button("Build_UserContorl", GUILayout.ExpandWidth(true)))
+        {
+            BuildUserContorl();
+        }
+
     }
 
     BuildOptions options = BuildOptions.ShowBuiltPlayer | BuildOptions.AcceptExternalModificationsToPlayer;
+
+    #region BuildUserContorl
+    void BuildUserContorl()
+    {
+        BuildPipeline.BuildPlayer(new string[1] { "Assets/UserContorl/UserContorl.unity" },
+                Application.dataPath + "/../../VRWorkSpace/Output/UserControl",
+                BuildTarget.WebPlayer,
+                options);
+    }
+    #endregion
+
+    #region BuildHook
 
     public void BuildSend()
     {
@@ -50,7 +67,7 @@ public class ExportProject : EditorWindow
         AssetDatabase.Refresh();
 
         BuildPipeline.BuildPlayer(new string[1] { "Assets/HookTech/SendMsg.unity" },
-                Application.dataPath + "/../../Output/SendMsg.exe",
+                Application.dataPath + "/../../VRWorkSpace/Output/SendMsg.exe",
                 BuildTarget.StandaloneWindows,
                 options);
     }
@@ -64,9 +81,10 @@ public class ExportProject : EditorWindow
         AssetDatabase.Refresh();
 
         BuildPipeline.BuildPlayer(new string[1] { "Assets/HookTech/HookMsg.unity" },
-                Application.dataPath + "/../../Output/HookMsg.exe",
+                Application.dataPath + "/../../VRWorkSpace/Output/HookMsg.exe",
                 BuildTarget.StandaloneWindows,
                 options);
     }
+    #endregion BuildHook
 
 }
