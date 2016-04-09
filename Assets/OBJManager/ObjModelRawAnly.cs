@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using LibVRGeometry;
+﻿using LibVRGeometry;
+using LibVRGeometry.Message;
 using System;
-using System.Globalization;
 using System.Collections.Generic;
-using VRClient;
+using System.Globalization;
+using UnityEngine;
 
 public class ObjModelRawAnly
 {

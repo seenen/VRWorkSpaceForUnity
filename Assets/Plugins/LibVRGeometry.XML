@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LibVRGeometry</name>
+    </assembly>
+    <members>
+        <member name="T:LibVRGeometry.CompressionType">
+            <summary>
+            压缩方式。
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.CompressionType.GZip">
+            <summary>
+            GZip 压缩格式
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.CompressionType.BZip2">
+            <summary>
+            BZip2 压缩格式
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.CompressionType.Zip">
+            <summary>
+            Zip 压缩格式
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.CompressionHelper">
+            <summary>
+            使用 SharpZipLib 进行压缩的辅助类，简化对字节数组和字符串进行压缩的操作。
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.CompressionHelper.CompressionProvider">
+            <summary>
+            压缩供应者，默认为 GZip。
+            </summary>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.Compress(System.Byte[])">
+            <summary>
+            从原始字节数组生成已压缩的字节数组。
+            </summary>
+            <param name="bytesToCompress">原始字节数组。</param>
+            <returns>返回已压缩的字节数组</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.Compress(System.String)">
+            <summary>
+            从原始字符串生成已压缩的字符串。
+            </summary>
+            <param name="stringToCompress">原始字符串。</param>
+            <returns>返回已压缩的字符串。</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.CompressToByte(System.String)">
+            <summary>
+            从原始字符串生成已压缩的字节数组。
+            </summary>
+            <param name="stringToCompress">原始字符串。</param>
+            <returns>返回已压缩的字节数组。</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.DeCompress(System.String)">
+            <summary>
+            从已压缩的字符串生成原始字符串。
+            </summary>
+            <param name="stringToDecompress">已压缩的字符串。</param>
+            <returns>返回原始字符串。</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.DeCompress(System.Byte[])">
+            <summary>
+            从已压缩的字节数组生成原始字节数组。
+            </summary>
+            <param name="bytesToDecompress">已压缩的字节数组。</param>
+            <returns>返回原始字节数组。</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.OutputStream(System.IO.Stream)">
+            <summary>
+            从给定的流生成压缩输出流。
+            </summary>
+            <param name="inputStream">原始流。</param>
+            <returns>返回压缩输出流。</returns>
+        </member>
+        <member name="M:LibVRGeometry.CompressionHelper.InputStream(System.IO.Stream)">
+            <summary>
+            从给定的流生成压缩输入流。
+            </summary>
+            <param name="inputStream">原始流。</param>
+            <returns>返回压缩输入流。</returns>
+        </member>
+        <member name="T:LibVRGeometry.Message.VBOBuffer">
+            <summary>
+            网格交互数据 这里的数据格式是根据一个标准的 .obj得来
+            </summary>
+        </member>
+        <member name="P:LibVRGeometry.Message.VBOBuffer.id">
+            <summary>
+            模型id 全局唯一id号
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.state">
+            <summary>
+            模型刷新的状态
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.vertices">
+            <summary>
+            顶点的数目   即 obj的 所有 v 的集合
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.normals">
+            <summary>
+            法线的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.uvs">
+            <summary>
+            UV的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.objects">
+            <summary>
+            VBO里对象的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.triangles">
+            <summary>
+            三角索引的数目 即 obj的 所有 v 的集合
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.VBOBuffer.TimeStamp">
+            <summary>
+            当前消息的时间戳 
+            C#: System.DateTime.Now.Millisecond
+            </summary>
+        </member>
+    </members>
+</doc>

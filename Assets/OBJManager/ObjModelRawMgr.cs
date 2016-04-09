@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using LibVRGeometry;
+using LibVRGeometry.Message;
 using System.Collections.Generic;
-using LibVRGeometry;
-using VRClient;
+using UnityEngine;
 
 public class ObjModelRawMgr
 {
@@ -12,15 +12,15 @@ public class ObjModelRawMgr
     {
         switch (omr.state)
         {
-            case ObjModelRawState.Null:
+            case MessageState.Null:
                 break;
-            case ObjModelRawState.Create:
+            case MessageState.Create:
                 CreateVBOBuffer(omr);
                 break;
-            case ObjModelRawState.Update:
+            case MessageState.Update:
                 ModifyVBOBuffer(omr);
                 break;
-            case ObjModelRawState.Destory:
+            case MessageState.Destory:
                 break;
         }
 
@@ -71,15 +71,15 @@ public class ObjModelRawMgr
     {
         switch (omr.state)
         {
-            case ObjModelRawState.Null:
+            case MessageState.Null:
                 break;
-            case ObjModelRawState.Create:
+            case MessageState.Create:
                 Create(omr);
                 break;
-            case ObjModelRawState.Update:
+            case MessageState.Update:
                 Modify(omr);
                 break;
-            case ObjModelRawState.Destory:
+            case MessageState.Destory:
                 Destory(omr);
                 break;
         }

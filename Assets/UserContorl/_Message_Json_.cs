@@ -1,12 +1,14 @@
 ﻿using LibVRGeometry;
+using LibVRGeometry.Message;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VRClient;
 
 public class _Message_Json_ : MonoBehaviour
 {
+    MessageInstance mMessageInstance = new MessageInstance();
+
     void Start()
     {
         Debuger.EnableLog = true;
@@ -31,7 +33,7 @@ public class _Message_Json_ : MonoBehaviour
             ObjModelRaw omr = new ObjModelRaw();
             omr.id = 0;
             omr.content = loader.text;
-            omr.state = ObjModelRawState.Create;
+            omr.state = MessageState.Create;
 
             ObjModelRawAnly o = new ObjModelRawAnly(omr);
             o.SetGeometryData(omr.content);
@@ -49,10 +51,10 @@ public class _Message_Json_ : MonoBehaviour
                 vbo.normals.Add(new _Vector3(v3.x, v3.y, v3.z));
             foreach(int i in o.buffer.triangles)
                 vbo.triangles.Add(i);
-            vbo.state = ObjModelRawState.Create;
+            vbo.state = MessageState.Create;
 
             //  序列化
-            string output = EditorMessageDecoder.EncodeMessageByProtobuf<VBOBuffer>(vbo);
+            string output = MessageDecoder.EncodeMessageByProtobuf<VBOBuffer>(vbo);
             RenderVBOBuffer(vbo);
 
             loader.Dispose();
@@ -73,11 +75,11 @@ public class _Message_Json_ : MonoBehaviour
             ObjModelRaw omr = new ObjModelRaw();
             omr.id = 0;
             omr.content = loader.text;
-            omr.state = ObjModelRawState.Create;
+            omr.state = MessageState.Create;
 
-            string output = EditorMessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
+            string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
 
-            ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
+            ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
 
             RenderObjRaw((ObjModelRaw)obj);
 
@@ -98,11 +100,11 @@ public class _Message_Json_ : MonoBehaviour
             ObjModelRaw omr = new ObjModelRaw();
             omr.id = 0;
             omr.content = loader.text;
-            omr.state = ObjModelRawState.Update;
+            omr.state = MessageState.Update;
 
-            string output = EditorMessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
+            string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
 
-            ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
+            ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
 
             RenderObjRaw((ObjModelRaw)obj);
 
@@ -145,13 +147,14 @@ public class _Message_Json_ : MonoBehaviour
                 //object obj = EditorMessageDecoder.DecodeMessage(buff);
                 //ObjModelRaw obj = EditorMessageDecoder.DecodeMessage<ObjModelRaw>(buff);
                 //ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(buff);
-                VBOBuffer obj = EditorMessageDecoder.DecodeMessageByProtobuf<VBOBuffer>(buff);
+                //VBOBuffer obj = MessageDecoder.DecodeMessageByProtobuf<VBOBuffer>(buff);
+                MessageDecoder.DecodeMessageWithHeader(buff, mMessageInstance);
 
                 //Debuger.Log("DecodeMessageByProtobuf " + (System.DateTime.Now.Millisecond - obj.t) / 1000.0f / 1000.0f + " s");
                 Debuger.Log("DecodeMessageByProtobuf " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
 
                 ////RenderObjRaw(obj);
-                RenderVBOBuffer(obj);
+                //RenderVBOBuffer(obj);
                 //Debuger.Log(" [obj:] " + obj);
 
                 //if (obj is ObjModel) RenderObj((ObjModel)obj);
