@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using LibraryGeometryFormat;
+using LibVRGeometry;
 using System;
 using System.Globalization;
 using System.Collections.Generic;
@@ -98,7 +97,7 @@ public class ObjModelRawAnly
                     for (int j = 1; j < p.Length; j++)
                     {
                         string[] c = p[j].Trim().Split("/".ToCharArray());
-                        VRClient.FaceIndices fi = new VRClient.FaceIndices();
+                        FaceIndices fi = new FaceIndices();
                         fi.vi = ci(c[0]) - 1;
                         if (c.Length > 1 && c[1] != "") fi.vu = ci(c[1]) - 1;
                         if (c.Length > 2 && c[2] != "") fi.vn = ci(c[2]) - 1;

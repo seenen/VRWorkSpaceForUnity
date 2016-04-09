@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using VRClient;
-using LibraryGeometryFormat;
-using System.Collections.Generic;
-using System.IO;
+﻿using LibVRGeometry;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using VRClient;
 
 public class _Message_Json_ : MonoBehaviour
 {

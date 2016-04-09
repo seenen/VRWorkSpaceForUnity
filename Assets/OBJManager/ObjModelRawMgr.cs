@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using LibraryGeometryFormat;
+using LibVRGeometry;
 using VRClient;
 
 public class ObjModelRawMgr

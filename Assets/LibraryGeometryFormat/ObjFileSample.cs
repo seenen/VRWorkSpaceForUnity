@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LibraryGeometryFormat;
+using LibVRGeometry;
 
 public class ObjFileSample : MonoBehaviour {
 

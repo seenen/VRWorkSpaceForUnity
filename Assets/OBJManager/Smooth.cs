@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using LibVRGeometry;
 using System;
-using LibraryGeometryFormat;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Smooth : IDisposable
 {

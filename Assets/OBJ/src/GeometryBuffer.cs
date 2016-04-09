@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using VRClient;
+using LibVRGeometry;
 
 public class GeometryBuffer
 {

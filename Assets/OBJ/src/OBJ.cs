@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using VRClient;
+using LibVRGeometry;
 
 public class OBJ : MonoBehaviour {
 	
