@@ -41,6 +41,31 @@ public class ObjModelRawAnly
         buffer = new GeometryBuffer();
     }
 
+    VBOBufferSingle mVBOBufferSingle = null;
+    public ObjModelRawAnly(VBOBufferSingle omr)
+    {
+        mVBOBufferSingle = omr;
+
+        buffer = new GeometryBuffer();
+
+        buffer.objects.Clear();
+
+        foreach (_Vector3 _v3 in omr.vertices)
+            buffer.vertices.Add(new Vector3(_v3.X, _v3.Y, _v3.Z));
+
+        foreach (_Vector2 _v2 in omr.uvs)
+            buffer.uvs.Add(new Vector2(_v2.X, _v2.Y));
+
+        foreach (_Vector3 _n in omr.normals)
+            buffer.normals.Add(new Vector3(_n.X, _n.Y, _n.Z));
+
+        buffer.PushObject(omr.id.ToString());
+        buffer.PushGroup(omr.id.ToString());
+
+        foreach (FaceIndices f in omr.faces)
+            buffer.PushFace(f);
+    }
+
     VBOBuffer mVBOBuffer = null;
     public ObjModelRawAnly(VBOBuffer omr)
     {

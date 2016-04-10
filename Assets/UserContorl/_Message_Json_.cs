@@ -16,11 +16,12 @@ public class _Message_Json_ : MonoBehaviour
 #if UNITY_EDITOR
 
         //StartCoroutine(Load());
-        StartCoroutine(LoadVBO());
+        //StartCoroutine(LoadVBO());
+        StartCoroutine(LoadVBOBufferSingle());
 #endif
 
     }
-    public IEnumerator LoadVBO()
+    public IEnumerator LoadVBOBufferSingle()
     {
         {
             string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
@@ -41,21 +42,22 @@ public class _Message_Json_ : MonoBehaviour
 
             //  构造一个VBO对象
 
-            VBOBuffer vbo = new VBOBuffer();
-            vbo.objects.AddRange(o.buffer.objects);
+            VBOBufferSingle vbo = new VBOBufferSingle();
             foreach(Vector3 v3 in o.buffer.vertices)
                 vbo.vertices.Add(new _Vector3(v3.x, v3.y, v3.z));
             foreach(Vector2 v2 in o.buffer.uvs)
                 vbo.uvs.Add(new _Vector2(v2.x, v2.y));
             foreach(Vector3 v3 in o.buffer.normals)
                 vbo.normals.Add(new _Vector3(v3.x, v3.y, v3.z));
-            foreach(int i in o.buffer.triangles)
-                vbo.triangles.Add(i);
             vbo.state = MessageState.Create;
 
+            vbo.name = o.buffer.objects[0].name;
+            vbo.faces = o.buffer.objects[0].allFaces;
+            vbo.materialName = "default";
+
             //  序列化
-            string output = MessageDecoder.EncodeMessageByProtobuf<VBOBuffer>(vbo);
-            RenderVBOBuffer(vbo);
+            string output = MessageDecoder.EncodeMessageByProtobuf<VBOBufferSingle>(vbo);
+            RenderVBOBufferSingle(vbo);
 
             loader.Dispose();
             loader = null;
@@ -63,58 +65,99 @@ public class _Message_Json_ : MonoBehaviour
         }
     }
 
-    public IEnumerator Load()
-    {
-        {
-            string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
+    //public IEnumerator LoadVBO()
+    //{
+    //    {
+    //        string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
 
-            WWW loader = new WWW(path);
+    //        WWW loader = new WWW(path);
 
-            yield return loader;
+    //        yield return loader;
 
-            ObjModelRaw omr = new ObjModelRaw();
-            omr.id = 0;
-            omr.content = loader.text;
-            omr.state = MessageState.Create;
+    //        ///拿到一个GB对象
+    //        ObjModelRaw omr = new ObjModelRaw();
+    //        omr.id = 0;
+    //        omr.content = loader.text;
+    //        omr.state = MessageState.Create;
 
-            string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
+    //        ObjModelRawAnly o = new ObjModelRawAnly(omr);
+    //        o.SetGeometryData(omr.content);
+    //        o.buffer.PopulateMeshes();
 
-            ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
+    //        //  构造一个VBO对象
 
-            RenderObjRaw((ObjModelRaw)obj);
+    //        VBOBuffer vbo = new VBOBuffer();
+    //        vbo.objects.AddRange(o.buffer.objects);
+    //        foreach(Vector3 v3 in o.buffer.vertices)
+    //            vbo.vertices.Add(new _Vector3(v3.x, v3.y, v3.z));
+    //        foreach(Vector2 v2 in o.buffer.uvs)
+    //            vbo.uvs.Add(new _Vector2(v2.x, v2.y));
+    //        foreach(Vector3 v3 in o.buffer.normals)
+    //            vbo.normals.Add(new _Vector3(v3.x, v3.y, v3.z));
+    //        foreach(int i in o.buffer.triangles)
+    //            vbo.triangles.Add(i);
+    //        vbo.state = MessageState.Create;
 
-            loader.Dispose();
-            loader = null;
+    //        //  序列化
+    //        string output = MessageDecoder.EncodeMessageByProtobuf<VBOBuffer>(vbo);
+    //        RenderVBOBuffer(vbo);
 
-        }
+    //        loader.Dispose();
+    //        loader = null;
 
-        yield return 1000;
+    //    }
+    //}
 
-        {
-            string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/5.obj";
+    //public IEnumerator Load()
+    //{
+    //    {
+    //        string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
 
-            WWW loader = new WWW(path);
+    //        WWW loader = new WWW(path);
 
-            yield return loader;
+    //        yield return loader;
 
-            ObjModelRaw omr = new ObjModelRaw();
-            omr.id = 0;
-            omr.content = loader.text;
-            omr.state = MessageState.Update;
+    //        ObjModelRaw omr = new ObjModelRaw();
+    //        omr.id = 0;
+    //        omr.content = loader.text;
+    //        omr.state = MessageState.Create;
 
-            string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
+    //        string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
 
-            ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
+    //        ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
 
-            RenderObjRaw((ObjModelRaw)obj);
+    //        RenderObjRaw((ObjModelRaw)obj);
 
-            loader.Dispose();
-            loader = null;
+    //        loader.Dispose();
+    //        loader = null;
 
-        }
-    }
+    //    }
 
-    ObjModelRawMgr mObjModelRawMgr = new ObjModelRawMgr();
+    //    yield return 1000;
+
+    //    {
+    //        string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/5.obj";
+
+    //        WWW loader = new WWW(path);
+
+    //        yield return loader;
+
+    //        ObjModelRaw omr = new ObjModelRaw();
+    //        omr.id = 0;
+    //        omr.content = loader.text;
+    //        omr.state = MessageState.Update;
+
+    //        string output = MessageDecoder.EncodeMessageByProtobuf<ObjModelRaw>(omr);
+
+    //        ObjModelRaw obj = MessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(output);
+
+    //        RenderObjRaw((ObjModelRaw)obj);
+
+    //        loader.Dispose();
+    //        loader = null;
+
+    //    }
+    //}
 
     string buff = string.Empty;
 
@@ -175,18 +218,29 @@ public class _Message_Json_ : MonoBehaviour
 
     }
 
-    void RenderObjRaw(ObjModelRaw om)
+    //ObjModelRawMgr mObjModelRawMgr = new ObjModelRawMgr();
+
+    //void RenderObjRaw(ObjModelRaw om)
+    //{
+    //    //Debuger.Log("RenderObjRaw" + om.state);
+
+    //    mObjModelRawMgr.Update(om);
+    //}
+
+    VBOBufferSingleMgr mVBOBufferSingleMgr = new VBOBufferSingleMgr();
+
+    //void RenderVBOBuffer(VBOBuffer vbo)
+    //{
+    //    Debuger.Log("RenderVBOBuffer" + vbo.objects.Count);
+
+    //    mObjModelRawMgr.Update(vbo);
+    //}
+
+    void RenderVBOBufferSingle(VBOBufferSingle vbo)
     {
-        //Debuger.Log("RenderObjRaw" + om.state);
+        Debuger.Log("RenderVBOBufferSingle" + vbo.id);
 
-        mObjModelRawMgr.Update(om);
-    }
-
-    void RenderVBOBuffer(VBOBuffer vbo)
-    {
-        Debuger.Log("RenderVBOBuffer" + vbo.objects.Count);
-
-        mObjModelRawMgr.Update(vbo);
+        mVBOBufferSingleMgr.Update(vbo);
     }
 
     void RenderObj(ObjModel om)

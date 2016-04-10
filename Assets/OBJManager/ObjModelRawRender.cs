@@ -21,6 +21,17 @@ public class ObjModelRawRender
         gameObject = new GameObject();
     }
 
+    public void Destory()
+    {
+        if (gameObject != null)
+        {
+            GameObject.Destroy(gameObject);
+            mMeshFilter = null;
+            mMeshRenderer = null;
+            gameObject = null;
+        }
+    }
+
     public void BuildGameObject(ref ObjModelRawAnly omr)
     {
         if (omr.hasMaterials)

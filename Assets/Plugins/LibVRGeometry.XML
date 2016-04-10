@@ -129,5 +129,70 @@
             C#: System.DateTime.Now.Millisecond
             </summary>
         </member>
+        <member name="T:LibVRGeometry.VBOBufferSingle">
+            <summary>
+            单个物体数据 这里的数据格式是根据一个标准的 .obj得来
+            </summary>
+        </member>
+        <member name="P:LibVRGeometry.VBOBufferSingle.id">
+            <summary>
+            模型id 全局唯一id号
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.state">
+            <summary>
+            模型刷新的状态
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.vertices">
+            <summary>
+            顶点的数目   即 obj的 所有 v 的集合
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.normals">
+            <summary>
+            法线的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.uvs">
+            <summary>
+            UV的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.name">
+            <summary>
+            对象名
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.materialName">
+            <summary>
+            材质名
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.faces">
+            <summary>
+            三角面相关索引数据集合
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.FaceIndices">
+            <summary>
+            一个三角面对应的顶点 UV和Normal索引
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.FaceIndices.vi">
+            <summary>
+            顶点索引号
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.FaceIndices.vu">
+            <summary>
+            UV索引号
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.FaceIndices.vn">
+            <summary>
+            法线索引号
+            </summary>
+        </member>
     </members>
 </doc>
