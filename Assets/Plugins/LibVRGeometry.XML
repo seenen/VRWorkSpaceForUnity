@@ -83,6 +83,25 @@
             <param name="inputStream">原始流。</param>
             <returns>返回压缩输入流。</returns>
         </member>
+        <member name="T:LibVRGeometry.VBOBufferSingleFile">
+            <summary>
+            Obj文件的操作类
+            </summary>
+        </member>
+        <member name="M:LibVRGeometry.VBOBufferSingleFile.Output(LibVRGeometry.VBOBufferSingle,System.String)">
+            <summary>
+            把对象m输出到文件filename
+            </summary>
+            <param name="m"></param>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LibVRGeometry.VBOBufferSingleFile.VBOBufferSingleToString(LibVRGeometry.VBOBufferSingle)">
+            <summary>
+            把对象m转成obj格式的文件
+            </summary>
+            <param name="m"></param>
+            <returns></returns>
+        </member>
         <member name="T:LibVRGeometry.Message.VBOBuffer">
             <summary>
             网格交互数据 这里的数据格式是根据一个标准的 .obj得来
@@ -173,6 +192,31 @@
             <summary>
             三角面相关索引数据集合
             </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBufferSingle.vboType">
+            <summary>
+            三角面相关索引数据集合
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.VBOType">
+            <summary>
+            数据格式
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOType.Null">
+            <summary>
+            没有定义格式 这是非法的
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOType.DOT_OBJ">
+            <summary>
+            标准的.obj文件格式
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOType.U3D_MESH">
+            <summary>
+            UNITY的MESH文件格式
+            </summary>        
         </member>
         <member name="T:LibVRGeometry.FaceIndices">
             <summary>
