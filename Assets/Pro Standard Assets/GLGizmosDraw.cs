@@ -105,16 +105,16 @@ namespace U3DSceneEditor
 			mMaterial.SetPass(0);  
 			GL.Color(color);
 			
-			GL.PushMatrix(); 
+			GL.PushMatrix();
 			
-			Matrix4x4 m = new Matrix4x4();
-			{
-				m = Matrix4x4.TRS(trans.position, trans.rotation, Vector3.one);
-			}
+			//Matrix4x4 m = new Matrix4x4();
+			//{
+			//	m = Matrix4x4.TRS(trans.position, trans.rotation, Vector3.one);
+			//}
+   //         GL.MultMatrix(m);
 			
-			GL.MultMatrix(m);
-			
-			GL.Begin(GL.LINES);
+            GL.MultMatrix(trans.localToWorldMatrix);
+            GL.Begin(GL.LINES);
 			
 			UnityEngine.Vector3 lt = new UnityEngine.Vector3(-size.x*0.5f, 0, size.y*0.5f);
 			UnityEngine.Vector3 lb = new UnityEngine.Vector3(-size.x*0.5f, 0, -size.y*0.5f);
@@ -125,13 +125,13 @@ namespace U3DSceneEditor
 			UnityEngine.Vector3 LB = new UnityEngine.Vector3(-size.x*0.5f, size.z, -size.y*0.5f);
 			UnityEngine.Vector3 RB = new UnityEngine.Vector3(size.x*0.5f, size.z, -size.y*0.5f);
 			UnityEngine.Vector3 RT = new UnityEngine.Vector3(size.x*0.5f, size.z, size.y*0.5f);
-			
-			GL.Vertex(lt); GL.Vertex(lb);
-			GL.Vertex(lb); GL.Vertex(rb);
-			GL.Vertex(rb); GL.Vertex(rt);
-			GL.Vertex(rt); GL.Vertex(lt);
-			
-			GL.Vertex(LT); GL.Vertex(LB);
+
+            GL.Vertex(lt); GL.Vertex(lb);
+            GL.Vertex(lb); GL.Vertex(rb);
+            GL.Vertex(rb); GL.Vertex(rt);
+            GL.Vertex(rt); GL.Vertex(lt);
+
+            GL.Vertex(LT); GL.Vertex(LB);
 			GL.Vertex(LB); GL.Vertex(RB);
 			GL.Vertex(RB); GL.Vertex(RT);
 			GL.Vertex(RT); GL.Vertex(LT);

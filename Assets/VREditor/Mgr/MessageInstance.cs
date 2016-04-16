@@ -1,15 +1,14 @@
 ﻿using LibVRGeometry;
 using LibVRGeometry.Message;
+using U3DSceneEditor;
 
 public class MessageInstance : IMessage
 {
     ObjModelRawMgr mObjModelRawMgr;
-    VBOBufferSingleMgr mVBOBufferSingleMgr;
 
     public MessageInstance()
     {
         mObjModelRawMgr = new ObjModelRawMgr();
-        mVBOBufferSingleMgr = new VBOBufferSingleMgr();
     }
 
     /// <summary>
@@ -43,7 +42,7 @@ public class MessageInstance : IMessage
             case VBOType.Null:
                 break;
             case VBOType.DOT_OBJ:
-                mVBOBufferSingleMgr.Update(buffer);
+                VBOBufferSingleMgr.Instance.Update(buffer);
                 break;
             case VBOType.U3D_MESH:
                 break;

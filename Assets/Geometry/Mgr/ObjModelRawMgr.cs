@@ -39,7 +39,7 @@ public class ObjModelRawMgr
 
         o.AnlyVBOBuffer(omr);
 
-        ObjModelRawRender r = new ObjModelRawRender();
+        ObjModelRawRender r = new ObjModelRawRender(new GameObject(omr.id.ToString()));
         r.BuildGameObject(ref o);
         r.BuildMesh(ref o);
         Smooth smooth = new Smooth(o.buffer);

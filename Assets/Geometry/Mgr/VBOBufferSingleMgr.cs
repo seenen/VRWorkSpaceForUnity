@@ -3,80 +3,174 @@ using System.Collections;
 using System.Collections.Generic;
 using LibVRGeometry;
 
-public class VBOBufferSingleMgr
+namespace U3DSceneEditor
 {
-    public Dictionary<int, ObjModelRawRender> mObjModelRawAnly = new Dictionary<int, ObjModelRawRender>();
 
-    #region VBOBuffer
-    ObjModelRawAnly oAnly = new ObjModelRawAnly();
-
-    public void Update(VBOBufferSingle omr)
+    public class VBOBufferSingleMgr
     {
-        switch (omr.state)
+        private static VBOBufferSingleMgr instance;
+
+        public static VBOBufferSingleMgr Instance
         {
-            case MessageState.Null:
+            get
+            {
+                if (instance == null)
+                    instance = new VBOBufferSingleMgr();
+
+                return instance;
+            }
+        }
+
+        #region 处理WinForm消息
+
+        public void Update(VBOBufferSingle omr)
+        {
+            Debuger.Log("VBOBufferSingleMgr.Update" + omr.id);
+
+            switch (omr.state)
+            {
+                case MessageState.Null:
+                    break;
+                case MessageState.Create:
+                    CreateVBOBuffer(omr);
+                    break;
+                case MessageState.Update:
+                    ModifyVBOBuffer(omr);
+                    break;
+                case MessageState.Destory:
+                    DestoryVBOBuffer(omr);
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// 创建对象
+        /// </summary>
+        /// <param name="omr"></param>
+        void CreateVBOBuffer(VBOBufferSingle vbo)
+        {
+            Debuger.Log("VBOBufferSingleMgr.CreateVBOBuffer" + vbo.id);
+
+            //  本地处理
+            if (allHash.ContainsKey(vbo.id.ToString()))
+            {
+                D3Object d3 = (D3Object)allHash[vbo.id.ToString()];
+                ((D3VBOBuffSingle)d3).UpdateVBO(vbo);
+
+                allHash.Remove(vbo.id.ToString());
+            }
+
+            GameObject go = GetBase();
+            go.name = vbo.id.ToString();
+            
+            //go.tag = D3Config.REGION_NAME;
+
+            D3VBOBuffSingleData vbodata = new D3VBOBuffSingleData(go);
+            vbodata.Name = vbo.id.ToString();
+
+            D3VBOBuffSingle d = go.AddComponent<D3VBOBuffSingle>();
+            d.InitData(vbodata);
+            d.UpdateVBO(vbo);
+
+            allHash[vbo.id.ToString()] = d;
+        }
+
+        void ModifyVBOBuffer(VBOBufferSingle vbo)
+        {
+            Debuger.Log("VBOBufferSingleMgr.ModifyVBOBuffer" + vbo.id);
+
+            if (allHash.ContainsKey(vbo.id.ToString()))
+            {
+                D3Object d = (D3Object)allHash[vbo.id.ToString()];
+                ((D3VBOBuffSingle)d).UpdateVBO(vbo);
+            }
+            else
+                Debuger.LogError("No Exist " + vbo.id);
+
+        }
+
+        void DestoryVBOBuffer(VBOBufferSingle vbo)
+        {
+            Debuger.Log("VBOBufferSingleMgr.DeleteVBOBufferSingle" + vbo.id);
+
+            if (allHash.ContainsKey(vbo.id.ToString()))
+            {
+                D3Object d = (D3Object)allHash[vbo.id.ToString()];
+                ((D3VBOBuffSingle)d).UpdateVBO(vbo);
+
+                allHash.Remove(vbo.id.ToString());
+            }
+            else
+                Debuger.LogError("No Exist " + vbo.id.ToString());
+        }
+        #endregion
+
+        #region 处理本地消息
+        public Dictionary<string, D3Object> allHash = new Dictionary<string, D3Object>();
+
+        public GameObject Selection(GameObject[] objs)
+        {
+            string selname = string.Empty;
+
+            foreach (GameObject e in objs)
+            {
+                if (e.layer != D3Config.LAYER_TRIGGER)
+                    continue;
+
+                selname = e.name;
+
+
                 break;
-            case MessageState.Create:
-                CreateVBOBuffer(omr);
-                break;
-            case MessageState.Update:
-                ModifyVBOBuffer(omr);
-                break;
-            case MessageState.Destory:
-                DestoryVBOBuffer(omr);
-                break;
+            }
+            GameObject obj = SelectionObject(selname);
+
+            Debug.Log(obj);
+
+            return obj;
+
+        }
+
+        /// <summary>
+        /// 选中 
+        /// </summary>
+        /// <param name="selname"></param>
+        /// <returns></returns>
+        public GameObject SelectionObject(string selname)
+        {
+
+            //  通知所有谁被选中 
+            foreach (KeyValuePair<string, D3Object> e in allHash)
+            {
+                D3Object d = (D3Object)e.Value;
+
+                d.Selection(selname);
+            }
+
+            if (!allHash.ContainsKey(selname))
+            {
+                Debuger.LogError("No Exist " + selname);
+
+                return null;
+            }
+
+            //  返回被选中的对象 
+            D3Object selobj = (D3Object)allHash[selname];
+
+            return selobj.gameObject;
+
+        }
+        #endregion
+
+        GameObject GetBase()
+        {
+            GameObject ZoneEditor = GameObject.Find("ZoneEditor");
+
+            GameObject go = new GameObject();
+            //go.transform.parent = ZoneEditor.transform;
+
+            return go;
         }
 
     }
-
-    /// <summary>
-    /// 创建对象
-    /// </summary>
-    /// <param name="omr"></param>
-    void CreateVBOBuffer(VBOBufferSingle vbo)
-    {
-        float start = Time.realtimeSinceStartup;
-
-        oAnly.AnlyVBOBufferSingle(vbo);
-
-        ObjModelRawRender r = new ObjModelRawRender();
-        r.BuildGameObject(ref oAnly);
-        r.BuildMesh(ref oAnly);
-        Smooth smooth = new Smooth(oAnly.buffer);
-        oAnly.buffer = smooth.Exe_GeometryBuffer();
-        r.Deformation(ref oAnly);
-
-        mObjModelRawAnly.Add(vbo.id, r);
-
-        Debuger.Log("Create " + (Time. realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
-    }
-
-    void ModifyVBOBuffer(VBOBufferSingle vbo)
-    {
-        float start = Time.realtimeSinceStartup;
-
-        oAnly.AnlyVBOBufferSingle(vbo);
-
-        ObjModelRawRender r = (ObjModelRawRender)mObjModelRawAnly[vbo.id];
-
-        r.BuildMesh(ref oAnly);
-        Smooth smooth = new Smooth(oAnly.buffer);
-        oAnly.buffer = smooth.Exe_GeometryBuffer();
-        r.Deformation(ref oAnly);
-
-        Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
-    }
-
-    void DestoryVBOBuffer(VBOBufferSingle vbo)
-    {
-        ObjModelRawRender r = mObjModelRawAnly[vbo.id];
-
-        if ( r != null )
-        {
-            r.Destory();
-
-            mObjModelRawAnly.Remove(vbo.id);
-        }
-    }
-    #endregion
 }

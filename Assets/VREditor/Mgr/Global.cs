@@ -29,6 +29,9 @@ namespace U3DSceneEditor
         public Camera mUniqueCamera;
 
         //
+        public MeshWireShowMono mMeshWireShowMono;
+
+        //
         public Camera mBuildCamera;
 
         //

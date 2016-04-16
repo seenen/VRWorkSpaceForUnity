@@ -8,6 +8,7 @@ namespace U3DSceneEditor
     public class D3Object : MonoBehaviour, IFingerControl, ITriggerEvent
     {
         public BoxCollider boxCollider;
+        //public MeshCollider meshCollider;
 
         /// <summary>
         /// 设置碰撞盒
@@ -15,9 +16,10 @@ namespace U3DSceneEditor
         public void SetCollider()
         {
             //  添加碰撞盒子 
+            //meshCollider = gameObject.AddComponent<MeshCollider>();
             boxCollider = gameObject.AddComponent<BoxCollider>();
-            boxCollider.center = Vector3.zero;
-            boxCollider.size = Vector3.one;
+            //boxCollider.center = Vector3.zero;
+            //boxCollider.size = Vector3.one;
         }
 
         Vector3 namepos = Vector3.zero;
@@ -47,8 +49,6 @@ namespace U3DSceneEditor
 
         virtual public void InitData(D3DataBase data)
         {
-            SetCollider();
-
             mData = data;
 
             //
@@ -65,6 +65,11 @@ namespace U3DSceneEditor
             transform.position = mData.Pos;
         }
 
+        virtual public void InitGO()
+        {
+            SetCollider();
+        }
+
         virtual public void UninitData()
         {
             
@@ -78,9 +83,9 @@ namespace U3DSceneEditor
 
             if (m_sel)
             {
-                GLGizmos.DrawSphere(transform.position + Vector3.up * 0.01f, SphereCircle, Color.gray);
+                //GLGizmos.DrawSphere(transform.position + Vector3.up * 0.01f, SphereCircle, Color.gray);
 
-                //GLGizmos.DrawCube(transform, boxCollider.bounds.size, Color.white);
+                GLGizmos.DrawCube(transform, boxCollider.bounds.size, Color.white);
             }
 
             if (Physics.Raycast(transform.position + transform.up * 10000, transform.up * -1, out hit, Mathf.Infinity, 1 << D3Config.Layer_Nav | 1 << D3Config.Layer_Groud))
@@ -339,7 +344,7 @@ namespace U3DSceneEditor
                 mLinks.Add(target);
         }
 
-        protected bool m_sel = false;
+        public bool m_sel = false;
 
         virtual public void Selection(string selname)
         {

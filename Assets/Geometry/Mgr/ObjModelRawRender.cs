@@ -16,9 +16,10 @@ public class ObjModelRawRender
     //  材质配置
     public Material mMaterial = null;
 
-    public ObjModelRawRender()
+    public ObjModelRawRender(GameObject root)
     {
-        gameObject = new GameObject();
+        //gameObject = new GameObject();
+        gameObject = root;
     }
 
     public void Destory()
@@ -36,7 +37,7 @@ public class ObjModelRawRender
     /// 创建一个GameObject
     /// </summary>
     /// <param name="omr"></param>
-    public void BuildGameObject(ref ObjModelRawAnly omr)
+    public GameObject BuildGameObject(ref ObjModelRawAnly omr)
     {
         if (omr.hasMaterials)
         {
@@ -72,14 +73,8 @@ public class ObjModelRawRender
 
         mMeshRenderer.material = MaterialManager.GetBeginMat();
 
+        return gameObject;
     }
-
-    ////public void BuildMesh(ref ObjModelRawAnly omr)
-    ////{
-
-    ////    omr.buffer.PopulateMeshes(ms, materials);
-
-    ////}
 
     public void BuildMesh(ref ObjModelRawAnly omr)
     {

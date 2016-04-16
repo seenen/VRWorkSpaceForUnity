@@ -3,6 +3,7 @@ using LibVRGeometry.Message;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using U3DSceneEditor;
 using UnityEngine;
 
 public class _Message_Json_ : MonoBehaviour
@@ -62,7 +63,26 @@ public class _Message_Json_ : MonoBehaviour
             loader.Dispose();
             loader = null;
 
+            yield return new WaitForSeconds(3);
+
+            //vbo.state = MessageState.Destory;
+            //DeleteVBOBufferSingle(vbo);
+
         }
+    }
+
+    void RenderVBOBufferSingle(VBOBufferSingle vbo)
+    {
+        Debuger.Log("RenderVBOBufferSingle" + vbo.id);
+
+        VBOBufferSingleMgr.Instance.Update(vbo);
+    }
+
+    void DeleteVBOBufferSingle(VBOBufferSingle vbo)
+    {
+        Debuger.Log("DeleteVBOBufferSingle" + vbo.id);
+
+        VBOBufferSingleMgr.Instance.Update(vbo);
     }
 
     //public IEnumerator LoadVBO()
@@ -159,6 +179,8 @@ public class _Message_Json_ : MonoBehaviour
     //    }
     //}
 
+
+    #region 接受消息
     string buff = string.Empty;
 
     int bufflen = 0;
@@ -187,10 +209,6 @@ public class _Message_Json_ : MonoBehaviour
 
                 //Debuger.Log("[bufflen:] " + bufflen);
 
-                //object obj = EditorMessageDecoder.DecodeMessage(buff);
-                //ObjModelRaw obj = EditorMessageDecoder.DecodeMessage<ObjModelRaw>(buff);
-                //ObjModelRaw obj = EditorMessageDecoder.DecodeMessageByProtobuf<ObjModelRaw>(buff);
-                //VBOBuffer obj = MessageDecoder.DecodeMessageByProtobuf<VBOBuffer>(buff);
                 MessageDecoder.DecodeMessageWithHeader(buff, mMessageInstance);
 
                 //Debuger.Log("DecodeMessageByProtobuf " + (System.DateTime.Now.Millisecond - obj.t) / 1000.0f / 1000.0f + " s");
@@ -218,30 +236,7 @@ public class _Message_Json_ : MonoBehaviour
 
     }
 
-    //ObjModelRawMgr mObjModelRawMgr = new ObjModelRawMgr();
-
-    //void RenderObjRaw(ObjModelRaw om)
-    //{
-    //    //Debuger.Log("RenderObjRaw" + om.state);
-
-    //    mObjModelRawMgr.Update(om);
-    //}
-
-    VBOBufferSingleMgr mVBOBufferSingleMgr = new VBOBufferSingleMgr();
-
-    //void RenderVBOBuffer(VBOBuffer vbo)
-    //{
-    //    Debuger.Log("RenderVBOBuffer" + vbo.objects.Count);
-
-    //    mObjModelRawMgr.Update(vbo);
-    //}
-
-    void RenderVBOBufferSingle(VBOBufferSingle vbo)
-    {
-        Debuger.Log("RenderVBOBufferSingle" + vbo.id);
-
-        mVBOBufferSingleMgr.Update(vbo);
-    }
+    #endregion
 
     void RenderObj(ObjModel om)
     {

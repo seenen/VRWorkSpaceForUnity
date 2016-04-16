@@ -156,39 +156,6 @@ namespace U3DSceneEditor
         //}
 
         /// <summary>
-        /// Ω‚ŒˆRegion 
-        /// </summary>
-        /// <param name="o"></param>
-
-        void ParseUnit(VBOBufferSingle buffsingle)
-        {
-            if (Global.instance.Scene == null)
-            {
-                Debuger.LogError("No Scene Data");
-                return;
-            }
-
-            if (buffsingle == null)
-            {
-                Debuger.LogError("ParseUnit DecodeMessage");
-                return;
-            }
-
-            D3VBOBuffSingleData unit = new D3VBOBuffSingleData();
-            unit.bEnable = false;
-            unit.Name = buffsingle.name;
-            unit.Pos = Vector3.zero;
-            //unit.Dir = GetQuaternionByUnitCell(msgUnit.Data.Direction);
-            //unit.Dir = Vector3.forward;
-
-            unit.vbo = buffsingle;
-
-            Debuger.Log("D3UnitData " + U3DJason.SerializeToString<D3UnitData>(unit));
-
-            TriggerMgr.Instance.Unit(unit);
-        }
-
-        /// <summary>
         /// Ω‚ŒˆUnit
         /// </summary>
         /// <param name="o"></param>
@@ -428,6 +395,8 @@ namespace U3DSceneEditor
 
         public void UpdateSelection(string name)
         {
+            Debuger.Log("U3dToWinfom UpdateSelection " + name);
+
             //RspOnObjectSelected obj = new RspOnObjectSelected();
             //{
             //    obj.Name = name;
