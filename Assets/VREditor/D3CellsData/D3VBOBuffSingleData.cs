@@ -38,8 +38,8 @@ namespace U3DSceneEditor
 
             oRender.BuildGameObject(ref oAnly);
             oRender.BuildMesh(ref oAnly);
-            Smooth smooth = new Smooth(oAnly.buffer);
-            oAnly.buffer = smooth.Exe_GeometryBuffer();
+            //Smooth smooth = new Smooth(oAnly.buffer);
+            //oAnly.buffer = smooth.Exe_GeometryBuffer();
             oRender.Deformation(ref oAnly);
 
             Debuger.Log("Create " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
@@ -54,8 +54,8 @@ namespace U3DSceneEditor
             oAnly.AnlyVBOBufferSingle(vbo);
 
             oRender.BuildMesh(ref oAnly);
-            Smooth smooth = new Smooth(oAnly.buffer);
-            oAnly.buffer = smooth.Exe_GeometryBuffer();
+            //Smooth smooth = new Smooth(oAnly.buffer);
+            //oAnly.buffer = smooth.Exe_GeometryBuffer();
             oRender.Deformation(ref oAnly);
 
             Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");

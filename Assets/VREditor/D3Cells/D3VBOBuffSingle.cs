@@ -16,7 +16,7 @@ namespace U3DSceneEditor
 
             bDrag = true;
             bSelection = true;
-            bRotation = true;
+            bRotation = false;
 
             //
             mD3VBOBuffSingleData = (D3VBOBuffSingleData)mData;
@@ -28,6 +28,24 @@ namespace U3DSceneEditor
 
             if (m_sel)
             {
+            }
+        }
+
+        float distance;
+
+        override public void Draging(Vector2 newpos)
+        {
+            if (!bDrag) return;
+
+            //  在对象所在平面的移动距离.
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            Plane plane = new Plane(transform.forward, transform.position);
+
+            if (plane.Raycast(ray, out distance))
+            {
+                Vector3 intersectionPoint = ray.GetPoint(distance);
+                transform.position = intersectionPoint;
             }
         }
 

@@ -41,6 +41,7 @@ public class MeshWireShowMono : MonoBehaviour
         for (int k = 0; k < triangles.Length / 3; k++)
         {
             wires.Add(vertices[triangles[k * 3]]);
+            wires.Add(vertices[triangles[k * 3]]);
             wires.Add(vertices[triangles[k * 3 + 1]]);
             wires.Add(vertices[triangles[k * 3 + 2]]);
         }

@@ -25,7 +25,7 @@ public class _Message_Json_ : MonoBehaviour
     public IEnumerator LoadVBOBufferSingle()
     {
         {
-            string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/1.obj";
+            string path = "file:///G:/GitHub/VR/Tools/stl2obj/Resources/DataFileObj/10.obj";
 
             WWW loader = new WWW(path);
 
