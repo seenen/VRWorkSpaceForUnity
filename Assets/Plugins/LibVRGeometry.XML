@@ -102,50 +102,44 @@
             <param name="m"></param>
             <returns></returns>
         </member>
-        <member name="T:LibVRGeometry.Message.VBOBuffer">
+        <member name="T:LibVRGeometry.Message.EditorMessage">
             <summary>
-            网格交互数据 这里的数据格式是根据一个标准的 .obj得来
+            编辑器信息
             </summary>
         </member>
-        <member name="P:LibVRGeometry.Message.VBOBuffer.id">
+        <member name="T:LibVRGeometry.Message.MDTitaniumClamp">
             <summary>
-            模型id 全局唯一id号
+            钛夹钳
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.state">
+        <member name="F:LibVRGeometry.Message.MDTitaniumClamp.open_degree">
             <summary>
-            模型刷新的状态
+            控制在 float [0 - 1]之间
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.vertices">
+        <member name="T:LibVRGeometry.Message.UnitMessage">
             <summary>
-            顶点的数目   即 obj的 所有 v 的集合
+            单位信息.
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.normals">
+        <member name="F:LibVRGeometry.Message.UnitMessage.eularAngle">
             <summary>
-            法线的数目
+            三个自由度的旋转.默认初始化是向下的
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.uvs">
+        <member name="F:LibVRGeometry.Message.UnitMessage.position">
             <summary>
-            UV的数目
+            三个空间方向.
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.objects">
+        <member name="T:LibVRGeometry.Message.SceneMessage">
             <summary>
-            VBO里对象的数目
+            场景信息
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.triangles">
+        <member name="T:LibVRGeometry.IMessage">
             <summary>
-            三角索引的数目 即 obj的 所有 v 的集合
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.VBOBuffer.TimeStamp">
-            <summary>
-            当前消息的时间戳 
-            C#: System.DateTime.Now.Millisecond
+            信息通知
             </summary>
         </member>
         <member name="T:LibVRGeometry.VBOBufferSingle">
@@ -236,6 +230,52 @@
         <member name="F:LibVRGeometry.FaceIndices.vn">
             <summary>
             法线索引号
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.VBOBuffer">
+            <summary>
+            网格交互数据 这里的数据格式是根据一个标准的 .obj得来
+            </summary>
+        </member>
+        <member name="P:LibVRGeometry.VBOBuffer.id">
+            <summary>
+            模型id 全局唯一id号
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.state">
+            <summary>
+            模型刷新的状态
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.vertices">
+            <summary>
+            顶点的数目   即 obj的 所有 v 的集合
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.normals">
+            <summary>
+            法线的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.uvs">
+            <summary>
+            UV的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.objects">
+            <summary>
+            VBO里对象的数目
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.triangles">
+            <summary>
+            三角索引的数目 即 obj的 所有 v 的集合
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.VBOBuffer.TimeStamp">
+            <summary>
+            当前消息的时间戳 
+            C#: System.DateTime.Now.Millisecond
             </summary>
         </member>
     </members>

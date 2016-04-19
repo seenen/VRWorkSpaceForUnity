@@ -46,6 +46,8 @@ public class FingerControlBase : MonoBehaviour
     bool Key_S = false;
     bool Key_D = false;
     bool Key_A = false;
+    bool Key_Q = false;
+    bool Key_E = false;
     protected bool Key_Mid = false;
     protected bool Key_Rotation = false;
     protected bool Key_Alt = false;
@@ -72,6 +74,12 @@ public class FingerControlBase : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D)) Key_D = (true);
         if (Input.GetKeyUp(KeyCode.D)) Key_D = (false);
 
+        if (Input.GetKeyDown(KeyCode.Q)) Key_Q = (true);
+        if (Input.GetKeyUp(KeyCode.Q)) Key_Q = (false);
+
+        if (Input.GetKeyDown(KeyCode.E)) Key_E = (true);
+        if (Input.GetKeyUp(KeyCode.E)) Key_E = (false);
+
         if (Input.GetKeyDown(KeyCode.Mouse2)) Key_Mid = (true);
         if (Input.GetKeyUp(KeyCode.Mouse2)) Key_Mid = (false);
 
@@ -79,6 +87,8 @@ public class FingerControlBase : MonoBehaviour
         if (Key_S)  Down();
         if (Key_A)  Left();
         if (Key_D)  Right();
+        if (Key_Q)  WiseClock();
+        if (Key_E)  Clock();
     }
 
     #endregion
@@ -160,6 +170,14 @@ public class FingerControlBase : MonoBehaviour
 
     }
     virtual public void Right()
+    {
+
+    }
+    virtual public void WiseClock()
+    {
+
+    }
+    virtual public void Clock()
     {
 
     }

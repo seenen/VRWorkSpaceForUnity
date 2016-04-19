@@ -11,3 +11,34 @@ public interface IFingerControl
     void Rotation(Vector2 delta);
 
 }
+
+public interface IKeyBoardControl
+{
+    #region KeyBoard
+    void Up();
+
+
+
+    void Down();
+
+
+
+    void Left();
+
+
+
+    void Right();
+
+
+
+    void WiseClock();
+
+
+
+    void Clock();
+    
+
+                  
+
+    #endregion  // KeyBoard
+}

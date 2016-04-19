@@ -1,6 +1,9 @@
-﻿using LibVRGeometry;
+﻿using System;
+using LibVRGeometry;
 using LibVRGeometry.Message;
 using U3DSceneEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MessageInstance : IMessage
 {
@@ -18,6 +21,22 @@ public class MessageInstance : IMessage
     public void OnEditorMessage(EditorMessage em)
     {
         Debuger.Log("MessageInstance.EditorMessage" + em.name);
+    }
+
+    public void OnMDTitaniumClamp(LibVRGeometry.Message.MDTitaniumClamp o)
+    {
+        Debuger.Log("MessageInstance.OnMDTitaniumClamp" + o.id);
+    }
+
+    public void OnSceneMessage(SceneMessage o)
+    {
+        Debuger.Log("MessageInstance.OnSceneMessage" + o.scene_name);
+
+        SceneManager.LoadScene("GallBladder_Cutting", LoadSceneMode.Additive);
+
+        //MedicalDevicesMgr.instance.SetLeft(GameObject.Find("MDTitaniumClamp"));
+
+        //MedicalDevicesMgr.instance.SetRight(GameObject.Find("MDScissors"));
     }
 
     /// <summary>

@@ -92,4 +92,34 @@ public class FingerControl : FingerControlBase
 
     #endregion
 
+    #region KeyBoard
+    public IKeyBoardControl handleKeyBoard;
+
+    override public void Up()
+    {
+        handleKeyBoard.Up();
+    }
+    override public void Down()
+    {
+        handleKeyBoard.Down();
+    }
+    override public void Left()
+    {
+        handleKeyBoard.Left();
+    }
+    override public void Right()
+    {
+        handleKeyBoard.Right();
+    }
+    override public void WiseClock()
+    {
+        handleKeyBoard.WiseClock();
+    }
+    override public void Clock()
+    {
+        handleKeyBoard.Clock();
+    }
+
+    #endregion  // KeyBoard
+
 }

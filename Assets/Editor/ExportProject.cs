@@ -49,7 +49,8 @@ public class ExportProject : EditorWindow
     #region BuildVREditor
     void BuildVREditor()
     {
-        BuildPipeline.BuildPlayer(new string[1] { "Assets/VREditor/VREditor.unity" },
+        BuildPipeline.BuildPlayer(new string[] {   "Assets/VREditor/VREditor.unity",
+                                                    "Assets/Scenes/GallBladder_Cutting.unity"},
                 Application.dataPath + "/../../VRWorkSpace/Output/VREditor",
                 BuildTarget.WebPlayer,
                 options);
