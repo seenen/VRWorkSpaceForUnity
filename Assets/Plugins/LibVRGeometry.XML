@@ -107,6 +107,41 @@
             编辑器信息
             </summary>
         </member>
+        <member name="T:LibVRGeometry.Message.MDScissors">
+            <summary>
+            剪刀
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.MDScissors.open_degree">
+            <summary>
+            控制在 float [0 - 1]之间
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.Message.MD2HO">
+            <summary>
+            钛夹钳状态
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.MD2HO.MD_ID">
+            <summary>
+            医疗设备ID
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.MD2HO.HO_ID">
+            <summary>
+            器官ID
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.MD2HO.Blade">
+            <summary>
+            是否有刃
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.Message.MD2HO.Pos">
+            <summary>
+            位置
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.Message.MDTitaniumClamp">
             <summary>
             钛夹钳
@@ -122,14 +157,9 @@
             单位信息.
             </summary>
         </member>
-        <member name="F:LibVRGeometry.Message.UnitMessage.eularAngle">
+        <member name="F:LibVRGeometry.Message.UnitMessage.id">
             <summary>
-            三个自由度的旋转.默认初始化是向下的
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.UnitMessage.position">
-            <summary>
-            三个空间方向.
+            ID
             </summary>
         </member>
         <member name="T:LibVRGeometry.Message.SceneMessage">

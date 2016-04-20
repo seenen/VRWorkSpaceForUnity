@@ -93,33 +93,51 @@ public class FingerControl : FingerControlBase
     #endregion
 
     #region KeyBoard
-    public IKeyBoardControl handleKeyBoard;
+    public IKeyBoardControl handleLeftKeyBoard;
+    public IKeyBoardControl handleRightKeyBoard;
+    override public void KeyDown(KeyCode kc)
+    {
+        switch(kc)
+        {
+            case KeyCode.W:
+                handleLeftKeyBoard.Up();
+                break;
+            case KeyCode.S:
+                handleLeftKeyBoard.Down();
+                break;
+            case KeyCode.A:
+                handleLeftKeyBoard.Left();
+                break;
+            case KeyCode.D:
+                handleLeftKeyBoard.Right();
+                break;
+            case KeyCode.Q:
+                handleLeftKeyBoard.WiseClock();
+                break;
+            case KeyCode.E:
+                handleLeftKeyBoard.Clock();
+                break;
 
-    override public void Up()
-    {
-        handleKeyBoard.Up();
+            case KeyCode.I:
+                handleRightKeyBoard.Up();
+                break;
+            case KeyCode.K:
+                handleRightKeyBoard.Down();
+                break;
+            case KeyCode.J:
+                handleRightKeyBoard.Left();
+                break;
+            case KeyCode.L:
+                handleRightKeyBoard.Right();
+                break;
+            case KeyCode.U:
+                handleRightKeyBoard.WiseClock();
+                break;
+            case KeyCode.O:
+                handleRightKeyBoard.Clock();
+                break;
+        }
     }
-    override public void Down()
-    {
-        handleKeyBoard.Down();
-    }
-    override public void Left()
-    {
-        handleKeyBoard.Left();
-    }
-    override public void Right()
-    {
-        handleKeyBoard.Right();
-    }
-    override public void WiseClock()
-    {
-        handleKeyBoard.WiseClock();
-    }
-    override public void Clock()
-    {
-        handleKeyBoard.Clock();
-    }
-
     #endregion  // KeyBoard
 
 }

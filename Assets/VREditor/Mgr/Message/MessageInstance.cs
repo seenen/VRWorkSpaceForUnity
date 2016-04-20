@@ -23,6 +23,11 @@ public class MessageInstance : IMessage
         Debuger.Log("MessageInstance.EditorMessage" + em.name);
     }
 
+    public void OnMD2HO(MD2HO o)
+    {
+        throw new NotImplementedException();
+    }
+
     public void OnMDTitaniumClamp(LibVRGeometry.Message.MDTitaniumClamp o)
     {
         Debuger.Log("MessageInstance.OnMDTitaniumClamp" + o.id);

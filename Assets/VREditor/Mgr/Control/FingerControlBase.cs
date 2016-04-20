@@ -4,6 +4,22 @@ using U3DSceneEditor;
 
 public class FingerControlBase : MonoBehaviour 
 {
+    public class KeyEvent
+    {
+        public KeyCode kc = KeyCode.A;
+        public bool IsPress = false;
+    }
+
+    public KeyEvent[] mKeyCharactors = new KeyEvent[(int)KeyCode.Z - (int)KeyCode.A];
+
+    void Start()
+    {
+        for ( int i = 0; i < (int)KeyCode.Z - (int)KeyCode.A; ++i)
+        {
+            mKeyCharactors[i] = new KeyEvent();
+            mKeyCharactors[i].kc = (KeyCode)(i + (int)KeyCode.A);
+        }
+    }
 
     #region Gesture event registration/unregistration
     void OnEnable()
@@ -42,17 +58,9 @@ public class FingerControlBase : MonoBehaviour
         FingerGestures.OnPinchEnd -= FingerGestures_OnPinchEnd;
     }
 
-    bool Key_W = false;
-    bool Key_S = false;
-    bool Key_D = false;
-    bool Key_A = false;
-    bool Key_Q = false;
-    bool Key_E = false;
     protected bool Key_Mid = false;
     protected bool Key_Rotation = false;
     protected bool Key_Alt = false;
-
-
 
     void Update()
     {
@@ -62,33 +70,18 @@ public class FingerControlBase : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftAlt)) Key_Alt = true;
         if (Input.GetKeyUp(KeyCode.LeftAlt)) Key_Alt = false;
 
-        if (Input.GetKeyDown(KeyCode.W)) Key_W =(true);
-        if (Input.GetKeyUp(KeyCode.W)) Key_W =(false);
+        /// 
+        for (int i = 0; i < mKeyCharactors.Length; ++i)
+        {
+            if (Input.GetKeyDown(mKeyCharactors[i].kc))
+                mKeyCharactors[i].IsPress = true;
 
-        if (Input.GetKeyDown(KeyCode.S)) Key_S = (true);
-        if (Input.GetKeyUp(KeyCode.S)) Key_S = (false);
+            if (Input.GetKeyUp(mKeyCharactors[i].kc))
+                mKeyCharactors[i].IsPress = false;
 
-        if (Input.GetKeyDown(KeyCode.A)) Key_A = (true);
-        if (Input.GetKeyUp(KeyCode.A)) Key_A = (false);
-
-        if (Input.GetKeyDown(KeyCode.D)) Key_D = (true);
-        if (Input.GetKeyUp(KeyCode.D)) Key_D = (false);
-
-        if (Input.GetKeyDown(KeyCode.Q)) Key_Q = (true);
-        if (Input.GetKeyUp(KeyCode.Q)) Key_Q = (false);
-
-        if (Input.GetKeyDown(KeyCode.E)) Key_E = (true);
-        if (Input.GetKeyUp(KeyCode.E)) Key_E = (false);
-
-        if (Input.GetKeyDown(KeyCode.Mouse2)) Key_Mid = (true);
-        if (Input.GetKeyUp(KeyCode.Mouse2)) Key_Mid = (false);
-
-        if (Key_W)  Up();
-        if (Key_S)  Down();
-        if (Key_A)  Left();
-        if (Key_D)  Right();
-        if (Key_Q)  WiseClock();
-        if (Key_E)  Clock();
+            if (mKeyCharactors[i].IsPress)
+                KeyDown(mKeyCharactors[i].kc);
+        }
     }
 
     #endregion
@@ -157,29 +150,9 @@ public class FingerControlBase : MonoBehaviour
     #endregion  //  Pinch & Pinch Gesture
 
     #region KeyBoard
-    virtual public void Up()
+    virtual public void KeyDown(KeyCode kc)
     {
-
-    }
-    virtual public void Down()
-    {
-
-    }
-    virtual public void Left()
-    {
-
-    }
-    virtual public void Right()
-    {
-
-    }
-    virtual public void WiseClock()
-    {
-
-    }
-    virtual public void Clock()
-    {
-
+        Debug.Log("KeyDown " + kc.ToString());
     }
 
     #endregion  // KeyBoard

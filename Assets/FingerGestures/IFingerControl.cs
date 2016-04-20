@@ -15,27 +15,25 @@ public interface IFingerControl
 public interface IKeyBoardControl
 {
     #region KeyBoard
+    /// <summary>
+    /// 左边
+    /// </summary>
     void Up();
-
-
-
     void Down();
-
-
-
     void Left();
-
-
-
     void Right();
-
-
-
     void WiseClock();
-
-
-
     void Clock();
+    
+    ///// <summary>
+    ///// 右边
+    ///// </summary>
+    //void I();
+    //void K();
+    //void J();
+    //void L();
+    //void U();
+    //void O();
     
 
                   

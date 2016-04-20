@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class MDScissors : MedicalDevices
 {
 
@@ -75,5 +76,20 @@ public class MDScissors : MedicalDevices
         Debuger.Log("MDScissors.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
 
     }
+    #region keyboard
+    override public void WiseClock()
+    {
+        testopendegree += Time.deltaTime * 5;
+
+        Progress(testopendegree);
+    }
+
+    override public void Clock()
+    {
+        testopendegree -= Time.deltaTime * 5;
+
+        Progress(testopendegree);
+    }
+    #endregion
 
 }

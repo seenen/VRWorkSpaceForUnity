@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class MDTitaniumClamp : MedicalDevices
 {
     public GameObject Target;
@@ -77,26 +78,6 @@ public class MDTitaniumClamp : MedicalDevices
     }
 
 #region keyboard
-    override public void Up()
-    {
-        transform.position += transform.forward * 5 * Time.deltaTime;
-    }
-
-    override public void Down()
-    {
-        transform.position -= transform.forward * 5 * Time.deltaTime;
-    }
-
-    override public void Left()
-    {
-        transform.Rotate(Vector3.forward, 50 * Time.deltaTime, Space.Self );
-    }
-
-    override public void Right()
-    {
-        transform.Rotate(Vector3.forward, -50 * Time.deltaTime, Space.Self);
-    }
-
     override public void WiseClock()
     {
         testopendegree += Time.deltaTime * 5;
