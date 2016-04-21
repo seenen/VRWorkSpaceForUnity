@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [ExecuteInEditMode]
 public class MDScissors : MedicalDevices
 {
+    public GameObject Target;
 
     public GameObject End_1_Root_Cursor;
     public GameObject End_2_Root_Cursor;
@@ -21,6 +21,7 @@ public class MDScissors : MedicalDevices
     public Vector3 Cursor_2_CurPos;
 
     public float testopendegree = 0;
+    public float merge_speed = 1;
 
     // Use this for initialization
     void Start ()
@@ -40,6 +41,8 @@ public class MDScissors : MedicalDevices
     // Update is called once per frame
     void Update ()
     {
+        transform.LookAt(Target.transform);
+
         End_1_Root_Cursor.transform.LookAt(End_1_Target_Cursor.transform.position);
         End_2_Root_Cursor.transform.LookAt(End_2_Target_Cursor.transform.position);
 
@@ -77,16 +80,75 @@ public class MDScissors : MedicalDevices
 
     }
     #region keyboard
+    Vector3 tmp = Vector3.zero;
+
+    override public void Up()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.y += move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Up();
+    }
+
+    override public void Down()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.y -= move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Down();
+    }
+
+
+    override public void Left()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.x += move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Left();
+    }
+
+    override public void Right()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.x -= move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Right();
+    }
+
     override public void WiseClock()
     {
-        testopendegree += Time.deltaTime * 5;
+        testopendegree += Time.deltaTime * merge_speed;
 
         Progress(testopendegree);
     }
 
     override public void Clock()
     {
-        testopendegree -= Time.deltaTime * 5;
+        testopendegree -= Time.deltaTime * merge_speed;
 
         Progress(testopendegree);
     }

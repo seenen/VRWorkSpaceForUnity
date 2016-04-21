@@ -6,18 +6,18 @@ public class FingerControlBase : MonoBehaviour
 {
     public class KeyEvent
     {
-        public KeyCode kc = KeyCode.A;
+        public KeyCode kc = KeyCode.Backspace;
         public bool IsPress = false;
     }
 
-    public KeyEvent[] mKeyCharactors = new KeyEvent[(int)KeyCode.Z - (int)KeyCode.A];
+    public KeyEvent[] mKeyCharactors = new KeyEvent[(int)KeyCode.Menu - (int)KeyCode.Backspace];
 
     void Start()
     {
-        for ( int i = 0; i < (int)KeyCode.Z - (int)KeyCode.A; ++i)
+        for ( int i = 0; i < (int)KeyCode.Menu - (int)KeyCode.Backspace; ++i)
         {
             mKeyCharactors[i] = new KeyEvent();
-            mKeyCharactors[i].kc = (KeyCode)(i + (int)KeyCode.A);
+            mKeyCharactors[i].kc = (KeyCode)(i + (int)KeyCode.Backspace);
         }
     }
 
@@ -77,7 +77,12 @@ public class FingerControlBase : MonoBehaviour
                 mKeyCharactors[i].IsPress = true;
 
             if (Input.GetKeyUp(mKeyCharactors[i].kc))
+            {
+                if (mKeyCharactors[i].IsPress)
+                    KeyUp(mKeyCharactors[i].kc);
+                
                 mKeyCharactors[i].IsPress = false;
+            }
 
             if (mKeyCharactors[i].IsPress)
                 KeyDown(mKeyCharactors[i].kc);
@@ -153,6 +158,11 @@ public class FingerControlBase : MonoBehaviour
     virtual public void KeyDown(KeyCode kc)
     {
         Debug.Log("KeyDown " + kc.ToString());
+    }
+
+    virtual public void KeyUp(KeyCode kc)
+    {
+        Debug.Log("KeyUp " + kc.ToString());
     }
 
     #endregion  // KeyBoard

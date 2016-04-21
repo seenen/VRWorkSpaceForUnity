@@ -14,7 +14,7 @@ namespace U3DSceneEditor
         {
             base.InitData(data);
 
-            bDrag = true;
+            bDrag = false;
             bSelection = true;
             bRotation = false;
 
@@ -54,16 +54,16 @@ namespace U3DSceneEditor
         {
             switch (omr.state)
             {
-                case MessageState.Null:
+                case VBOState.Null:
                     break;
-                case MessageState.Create:
+                case VBOState.Create:
                     mD3VBOBuffSingleData.CreateVBOBuffer(omr);
                     base.InitGO();
                     break;
-                case MessageState.Update:
+                case VBOState.Update:
                     mD3VBOBuffSingleData.ModifyVBOBuffer(omr);
                     break;
-                case MessageState.Destory:
+                case VBOState.Destory:
                     mD3VBOBuffSingleData.DestoryVBOBuffer(omr);
                     break;
             }

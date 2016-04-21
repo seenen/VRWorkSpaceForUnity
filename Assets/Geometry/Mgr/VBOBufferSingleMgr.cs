@@ -29,15 +29,15 @@ namespace U3DSceneEditor
 
             switch (omr.state)
             {
-                case MessageState.Null:
+                case VBOState.Null:
                     break;
-                case MessageState.Create:
+                case VBOState.Create:
                     CreateVBOBuffer(omr);
                     break;
-                case MessageState.Update:
+                case VBOState.Update:
                     ModifyVBOBuffer(omr);
                     break;
-                case MessageState.Destory:
+                case VBOState.Destory:
                     DestoryVBOBuffer(omr);
                     break;
             }
@@ -63,7 +63,8 @@ namespace U3DSceneEditor
 
             GameObject go = GetBase();
             go.name = vbo.id.ToString();
-            
+            go.AddComponent<HOGallBladder>();
+
             //go.tag = D3Config.REGION_NAME;
 
             D3VBOBuffSingleData vbodata = new D3VBOBuffSingleData(go);

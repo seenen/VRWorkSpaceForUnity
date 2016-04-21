@@ -6,6 +6,12 @@ public class MedicalDevices : MonoBehaviour, IKeyBoardControl
 {
     public int id;
 
+    public Transform Root;
+
+    public float move_speed = 10;
+
+    public float rotate_speed = 10;
+
     virtual public void Clock()
     {
     }
@@ -14,23 +20,44 @@ public class MedicalDevices : MonoBehaviour, IKeyBoardControl
     {
     }
 
+    virtual public void Up()
+    {
+        transform.position += transform.forward * move_speed * Time.deltaTime;
+    }
+
     virtual public void Down()
     {
-        transform.position -= transform.forward * 5 * Time.deltaTime;
+        transform.position -= transform.forward * move_speed * Time.deltaTime;
     }
 
     virtual public void Left()
     {
-        transform.Rotate(Vector3.forward, 50 * Time.deltaTime, Space.Self);
+        Root.Rotate(Root.forward, rotate_speed * Time.deltaTime, Space.World);
     }
 
     virtual public void Right()
     {
-        transform.Rotate(Vector3.forward, -50 * Time.deltaTime, Space.Self);
+        Root.Rotate(Root.forward, -rotate_speed * Time.deltaTime, Space.World);
     }
 
-    virtual public void Up()
+    protected bool bShift = false;
+
+    virtual public void Shift(bool flag)
     {
-        transform.position += transform.forward * 5 * Time.deltaTime;
+        bShift = flag;
+    }
+
+    protected bool bCtrl = false;
+
+    virtual public void Ctrl(bool flag)
+    {
+        bCtrl = flag;
+    }
+
+    protected bool bAlt = false;
+
+    virtual public void Alt(bool flag)
+    {
+        bAlt = flag;
     }
 }

@@ -23,7 +23,8 @@ public sealed class MaterialManager
 
         cur = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
         Material ins = (Material)GameObject.Instantiate(beginMat);
-        ins.SetColor("_Albedo", cur);
+        ins.SetColor("_Color", cur);
+
         return ins;
     }
 
@@ -32,7 +33,8 @@ public sealed class MaterialManager
         //return matPhongDisp;
 
         Material ins = (Material)GameObject.Instantiate(endMat);
-        ins.SetColor("_Albedo", cur);
+        ins.SetColor("_Color", cur);
+
         return ins;
     }
 }

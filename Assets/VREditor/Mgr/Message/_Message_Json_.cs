@@ -22,6 +22,7 @@ public class _Message_Json_ : MonoBehaviour
 #endif
 
     }
+
     public IEnumerator LoadVBOBufferSingle()
     {
         {
@@ -35,7 +36,7 @@ public class _Message_Json_ : MonoBehaviour
             ObjModelRaw omr = new ObjModelRaw();
             omr.id = 0;
             omr.content = loader.text;
-            omr.state = MessageState.Create;
+            omr.state = VBOState.Create;
 
             ObjModelRawAnly o = new ObjModelRawAnly();
             o.AnlyFileContent(omr.content);
@@ -50,7 +51,7 @@ public class _Message_Json_ : MonoBehaviour
                 vbo.uvs.Add(new _Vector2(v2.x, v2.y));
             foreach(Vector3 v3 in o.buffer.normals)
                 vbo.normals.Add(new _Vector3(v3.x, v3.y, v3.z));
-            vbo.state = MessageState.Create;
+            vbo.state = VBOState.Create;
 
             vbo.name = o.buffer.objects[0].name;
             vbo.faces = o.buffer.objects[0].allFaces;

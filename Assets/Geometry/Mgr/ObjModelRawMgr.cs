@@ -14,15 +14,15 @@ public class ObjModelRawMgr
     {
         switch (omr.state)
         {
-            case MessageState.Null:
+            case VBOState.Null:
                 break;
-            case MessageState.Create:
+            case VBOState.Create:
                 CreateVBOBuffer(omr);
                 break;
-            case MessageState.Update:
+            case VBOState.Update:
                 ModifyVBOBuffer(omr);
                 break;
-            case MessageState.Destory:
+            case VBOState.Destory:
                 DestoryVBOBuffer(omr);
                 break;
         }

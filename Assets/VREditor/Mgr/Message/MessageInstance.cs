@@ -1,8 +1,7 @@
-﻿using System;
-using LibVRGeometry;
+﻿using LibVRGeometry;
 using LibVRGeometry.Message;
+using System;
 using U3DSceneEditor;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MessageInstance : IMessage
@@ -23,12 +22,17 @@ public class MessageInstance : IMessage
         Debuger.Log("MessageInstance.EditorMessage" + em.name);
     }
 
-    public void OnMD2HO(MD2HO o)
+    public void OnMD2HO(IM_MD2HO o)
     {
         throw new NotImplementedException();
     }
 
-    public void OnMDTitaniumClamp(LibVRGeometry.Message.MDTitaniumClamp o)
+    public void OnMDScissors(UM_MDScissors o)
+    {
+        Debuger.Log("MessageInstance.OnMDScissors" + o.id);
+    }
+
+    public void OnMDTitaniumClamp(UM_MDTitaniumClamp o)
     {
         Debuger.Log("MessageInstance.OnMDTitaniumClamp" + o.id);
     }

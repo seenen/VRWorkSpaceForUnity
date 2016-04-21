@@ -32,7 +32,6 @@ public class MedicalDevicesMgr : MonoBehaviour
     {
         Left = obj.GetComponent<MedicalDevices>();
         mFingerControl.handleLeftKeyBoard = Left;
-
     }
 
     public void SetRight(GameObject obj)
@@ -50,15 +49,17 @@ public class MedicalDevicesMgr : MonoBehaviour
     /// <param name="ho"></param>
     public void Trigger(ComponentBlade cb, HOGallBladder ho, Vector3 pos)
     {
-        MD2HO im = new MD2HO();
+#if !UNITY_EDITOR
+        IM_MD2HO im = new IM_MD2HO();
         im.MD_ID = cb.md.id;
         im.HO_ID = ho.id;
         im.Pos = new _Vector3(pos.x, pos.y, pos.z);
         im.time = System.DateTime.Now;
 
-        string o = MessageDecoder.EncodeMessageByProtobuf<MD2HO>(im);
+        string o = MessageDecoder.EncodeMessageByProtobuf<IM_MD2HO>(im);
 
         CallMessage.Instance.CallMsg(o);
+#endif
     }
     #endregion
 }

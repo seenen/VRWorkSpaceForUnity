@@ -6,7 +6,6 @@ public class MDTitaniumClamp : MedicalDevices
 {
     public GameObject Target;
 
-
     public GameObject End_1_Root_Fixed;
     public GameObject End_2_Root_Cursor;
 
@@ -19,6 +18,7 @@ public class MDTitaniumClamp : MedicalDevices
     public Vector3 Dir;
 
     public float testopendegree = 0;
+    public float merge_speed = 1;
 
     void Start()
     {
@@ -48,15 +48,11 @@ public class MDTitaniumClamp : MedicalDevices
     void LocalDir()
     {
         Dir = Cursor_Max_LocalPos - Cursor_Min_LocalPos;
-
     }
 
     void Update()
     {
-        if (Target != null)
-        {
-            transform.LookAt(Target.transform);
-        }
+        transform.LookAt(Target.transform.position);
 
         End_2_Root_Cursor.transform.LookAt(End_2_Target_Cursor.transform.position);
 
@@ -77,17 +73,77 @@ public class MDTitaniumClamp : MedicalDevices
 
     }
 
-#region keyboard
+    #region keyboard
+    Vector3 tmp = Vector3.zero;
+
+    override public void Up()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.y += move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Up();
+    }
+
+    override public void Down()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.y -= move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Down();
+    }
+
+
+    override public void Left()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.x += move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Left();
+    }
+
+    override public void Right()
+    {
+        if (bShift)
+        {
+            tmp = Target.transform.position;
+            tmp.x -= move_speed * Time.deltaTime;
+            Target.transform.position = tmp;
+
+            return;
+        }
+
+        base.Right();
+    }
+
+
     override public void WiseClock()
     {
-        testopendegree += Time.deltaTime * 5;
+        testopendegree += Time.deltaTime * merge_speed;
 
         Progress(testopendegree);
     }
 
     override public void Clock()
     {
-        testopendegree -= Time.deltaTime * 5;
+        testopendegree -= Time.deltaTime * merge_speed;
 
         Progress(testopendegree);
     }

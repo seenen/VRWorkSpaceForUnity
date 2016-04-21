@@ -99,6 +99,18 @@ public class FingerControl : FingerControlBase
     {
         switch(kc)
         {
+            case KeyCode.LeftShift:
+            case KeyCode.RightShift:
+                handleLeftKeyBoard.Shift(true);
+                break;
+            case KeyCode.LeftAlt:
+            case KeyCode.RightAlt:
+                handleLeftKeyBoard.Alt(true);
+                break;
+            case KeyCode.LeftControl:
+            case KeyCode.RightControl:
+                handleLeftKeyBoard.Ctrl(true);
+                break;
             case KeyCode.W:
                 handleLeftKeyBoard.Up();
                 break;
@@ -135,6 +147,24 @@ public class FingerControl : FingerControlBase
                 break;
             case KeyCode.O:
                 handleRightKeyBoard.Clock();
+                break;
+        }
+    }
+    override public void KeyUp(KeyCode kc)
+    {
+        switch(kc)
+        {
+            case KeyCode.LeftShift:
+            case KeyCode.RightShift:
+                handleLeftKeyBoard.Shift(false);
+                break;
+            case KeyCode.LeftAlt:
+            case KeyCode.RightAlt:
+                handleLeftKeyBoard.Alt(false);
+                break;
+            case KeyCode.LeftControl:
+            case KeyCode.RightControl:
+                handleLeftKeyBoard.Ctrl(false);
                 break;
         }
     }

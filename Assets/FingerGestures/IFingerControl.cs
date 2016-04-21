@@ -24,19 +24,13 @@ public interface IKeyBoardControl
     void Right();
     void WiseClock();
     void Clock();
-    
+
     ///// <summary>
     ///// 右边
     ///// </summary>
-    //void I();
-    //void K();
-    //void J();
-    //void L();
-    //void U();
-    //void O();
-    
-
-                  
+    void Shift(bool flag);
+    void Ctrl(bool flag);
+    void Alt(bool flag);
 
     #endregion  // KeyBoard
 }
