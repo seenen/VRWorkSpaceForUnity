@@ -32,12 +32,12 @@ public class MedicalDevices : MonoBehaviour, IKeyBoardControl
 
     virtual public void Left()
     {
-        Root.Rotate(Root.forward, rotate_speed * Time.deltaTime, Space.World);
+        Root.Rotate(Root.up, rotate_speed * Time.deltaTime, Space.World);
     }
 
     virtual public void Right()
     {
-        Root.Rotate(Root.forward, -rotate_speed * Time.deltaTime, Space.World);
+        Root.Rotate(Root.up, -rotate_speed * Time.deltaTime, Space.World);
     }
 
     protected bool bShift = false;

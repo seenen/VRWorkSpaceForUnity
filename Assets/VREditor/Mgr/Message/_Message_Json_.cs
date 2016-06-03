@@ -19,6 +19,7 @@ public class _Message_Json_ : MonoBehaviour
         //StartCoroutine(Load());
         //StartCoroutine(LoadVBO());
         StartCoroutine(LoadVBOBufferSingle());
+        StartCoroutine(LoadTitaniumClamp());
 #endif
 
     }
@@ -70,6 +71,40 @@ public class _Message_Json_ : MonoBehaviour
             //DeleteVBOBufferSingle(vbo);
 
         }
+    }
+
+    public IEnumerator LoadTitaniumClamp()
+    {
+        yield return new WaitForSeconds(3);
+
+        HDTitaniumClampMessage tc = new HDTitaniumClampMessage();
+        tc.id = 0;
+        tc.state = UnitMessageState.Create;
+        tc.type = HDType.TitaniumClamp;
+        tc.move_speed = 5;
+        tc.rotate_speed = 5;
+        tc.merge_degree = 10;
+        tc.merge_speed = 1;
+
+        string output = MessageDecoder.EncodeMessageByProtobuf<HDTitaniumClampMessage>(tc);
+
+        _Message_Json_Recv(output);
+
+        //VBOBufferSingleMgr.Instance.Update((UnitMessage)tc);
+
+
+        //yield return new WaitForSeconds(3);
+
+        //HDTitaniumClampMessage copytc = tc;
+        //copytc.state = UnitMessageState.Create;
+        //copytc.type = HDType.TitaniumClamp;
+        //copytc.move_speed = 5;
+
+        //string output1 = MessageDecoder.EncodeMessageByProtobuf<HDTitaniumClampMessage>(copytc);
+
+        //_Message_Json_Recv(output1);
+
+        //VBOBufferSingleMgr.Instance.Update((UnitMessage)tc);
     }
 
     void RenderVBOBufferSingle(VBOBufferSingle vbo)
@@ -210,10 +245,19 @@ public class _Message_Json_ : MonoBehaviour
 
                 //Debuger.Log("[bufflen:] " + bufflen);
 
-                MessageDecoder.DecodeMessageWithHeader(buff, mMessageInstance);
+                try
+                {
+                    MessageDecoder.DecodeMessageWithHeader(buff, mMessageInstance);
+                }
+                catch(Exception e)
+                {
+                    Debuger.LogError(e.Message + " | " + (buff) + " | " + mMessageInstance);
+
+                    Debuger.LogWarning(e);
+                }
 
                 //Debuger.Log("DecodeMessageByProtobuf " + (System.DateTime.Now.Millisecond - obj.t) / 1000.0f / 1000.0f + " s");
-                Debuger.Log("DecodeMessageByProtobuf " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
+                //Debuger.Log("DecodeMessageByProtobuf " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
 
                 ////RenderObjRaw(obj);
                 //RenderVBOBuffer(obj);
@@ -227,7 +271,7 @@ public class _Message_Json_ : MonoBehaviour
 
                 start = System.DateTime.Now.Millisecond;
 
-                Debuger.Log(" Done ");
+                //Debuger.Log(" Done ");
             }
         }
         catch (Exception e)

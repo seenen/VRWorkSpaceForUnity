@@ -58,7 +58,7 @@ namespace U3DSceneEditor
             //oAnly.buffer = smooth.Exe_GeometryBuffer();
             oRender.Deformation(ref oAnly);
 
-            Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
+            Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) + " ms");
         }
 
         public void DestoryVBOBuffer(VBOBufferSingle vbo)

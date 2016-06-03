@@ -42,6 +42,11 @@ public class ExportProject : EditorWindow
             BuildVREditor();
         }
 
+        if (GUILayout.Button("Build_DataServer", GUILayout.ExpandWidth(true)))
+        {
+            BuildDataServer();
+        }
+
     }
 
     BuildOptions options = BuildOptions.ShowBuiltPlayer | BuildOptions.AcceptExternalModificationsToPlayer;
@@ -53,6 +58,16 @@ public class ExportProject : EditorWindow
                                                     "Assets/Scenes/GallBladder_Cutting.unity"},
                 Application.dataPath + "/../../VRWorkSpace/Output/VREditor",
                 BuildTarget.WebPlayer,
+                options);
+    }
+    #endregion
+
+    #region BuildDataServer
+    void BuildDataServer()
+    {
+        BuildPipeline.BuildPlayer(new string[] { "Assets/Scenes/DataServerTest.unity" },
+                Application.dataPath + "/../../VRWorkSpace/Output/DataServerTest.exe",
+                BuildTarget.StandaloneWindows,
                 options);
     }
     #endregion

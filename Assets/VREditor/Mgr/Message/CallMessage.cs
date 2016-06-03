@@ -31,7 +31,7 @@ public class CallMessage : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="o"></param>
-    public void PeekSendMsg(string o)
+    void PeekSendMsg(string o)
     {
         if (string.IsNullOrEmpty(o))
             return;

@@ -1,6 +1,3 @@
-using System.Collections;
-
-using System.IO;
 using System;
 
 namespace U3DSceneEditor

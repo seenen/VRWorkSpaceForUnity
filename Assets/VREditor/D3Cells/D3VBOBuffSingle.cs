@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using LibVRGeometry;
-using System.Collections.Generic;
+﻿using LibVRGeometry;
+using UnityEngine;
 
 namespace U3DSceneEditor
 {
@@ -49,6 +47,8 @@ namespace U3DSceneEditor
             }
         }
 
+        MeshCollider meshCollider;
+
         #region Render
         public void UpdateVBO(VBOBufferSingle omr)
         {
@@ -58,7 +58,12 @@ namespace U3DSceneEditor
                     break;
                 case VBOState.Create:
                     mD3VBOBuffSingleData.CreateVBOBuffer(omr);
-                    base.InitGO();
+
+                    GameObject.Destroy(boxCollider);
+                    boxCollider = null;
+
+                    meshCollider = gameObject.AddComponent<MeshCollider>();
+
                     break;
                 case VBOState.Update:
                     mD3VBOBuffSingleData.ModifyVBOBuffer(omr);

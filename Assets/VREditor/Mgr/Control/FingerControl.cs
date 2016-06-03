@@ -102,14 +102,17 @@ public class FingerControl : FingerControlBase
             case KeyCode.LeftShift:
             case KeyCode.RightShift:
                 handleLeftKeyBoard.Shift(true);
+                handleRightKeyBoard.Shift(true);
                 break;
             case KeyCode.LeftAlt:
             case KeyCode.RightAlt:
                 handleLeftKeyBoard.Alt(true);
+                handleRightKeyBoard.Alt(true);
                 break;
             case KeyCode.LeftControl:
             case KeyCode.RightControl:
                 handleLeftKeyBoard.Ctrl(true);
+                handleRightKeyBoard.Ctrl(true);
                 break;
             case KeyCode.W:
                 handleLeftKeyBoard.Up();
@@ -157,14 +160,17 @@ public class FingerControl : FingerControlBase
             case KeyCode.LeftShift:
             case KeyCode.RightShift:
                 handleLeftKeyBoard.Shift(false);
+                handleRightKeyBoard.Shift(false);
                 break;
             case KeyCode.LeftAlt:
             case KeyCode.RightAlt:
                 handleLeftKeyBoard.Alt(false);
+                handleRightKeyBoard.Alt(false);
                 break;
             case KeyCode.LeftControl:
             case KeyCode.RightControl:
                 handleLeftKeyBoard.Ctrl(false);
+                handleRightKeyBoard.Ctrl(false);
                 break;
         }
     }

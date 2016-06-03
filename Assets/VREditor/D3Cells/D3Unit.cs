@@ -12,7 +12,7 @@ namespace U3DSceneEditor
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="region"></param>
+        /// <param name="data"></param>
         override public void InitData(D3DataBase data)
         {
             base.InitData(data);
@@ -22,7 +22,7 @@ namespace U3DSceneEditor
             bRotation = true;
 
             //
-            mUnitData = (D3UnitData)mData;
+            mUnitData = (D3MedicalDeviceData)mData;
 
             StartCoroutine(UpdateUnitInfo());
         }
@@ -80,7 +80,7 @@ namespace U3DSceneEditor
 
         //
         [SerializeField]
-        public D3UnitData mUnitData;
+        public D3MedicalDeviceData mUnitData;
     }
 
 }

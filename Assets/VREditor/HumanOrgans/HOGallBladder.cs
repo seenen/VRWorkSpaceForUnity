@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using U3DSceneEditor;
 
 public class HOGallBladder : MonoBehaviour
 {
@@ -22,14 +23,9 @@ public class HOGallBladder : MonoBehaviour
     {
         Debug.Log("HOGallBladder.OnTriggerEnter" + collider.gameObject.name + ":" + Time.time);
 
-        if (collider.gameObject.layer == 8)
+        if (collider.gameObject.layer == D3Config.Layer_MedicalDevices)
         {
-            collider.gameObject.SendMessage("Selected", true);
-
-            MedicalDevicesMgr.instance.Trigger( collider.gameObject.GetComponent<ComponentBlade>(), 
-                                                this,
-                                                Vector3.one);
-
+            Acti(collider.gameObject);
         }
 
     }
@@ -38,15 +34,51 @@ public class HOGallBladder : MonoBehaviour
     {
         Debug.Log("HOGallBladder.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
 
-        if (collider.gameObject.layer == 8)
+        if (collider.gameObject.layer == D3Config.Layer_MedicalDevices)
         {
-            collider.gameObject.SendMessage("Selected", false);
-
-            MedicalDevicesMgr.instance.Trigger( collider.gameObject.GetComponent<ComponentBlade>(), 
-                                                this,
-                                                Vector3.one);
-
+            Unacti(collider.gameObject);
         }
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("HOGallBladder.OnCollisionEnter" + collision.gameObject.name + ":" + Time.time);
+
+        if (collision.gameObject.layer == D3Config.Layer_MedicalDevices)
+        {
+            Acti(collision.gameObject);
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("HOGallBladder.OnCollisionExit" + collision.gameObject.name + ":" + Time.time);
+
+        if (collision.gameObject.layer == D3Config.Layer_MedicalDevices)
+        {
+            Unacti(collision.gameObject);
+        }
+    }
+
+
+    void Acti(GameObject target)
+    {
+        target.gameObject.SendMessage("Selected", true);
+
+        MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
+                                            this,
+                                            Vector3.one);
+
+    }
+
+    void Unacti(GameObject target)
+    {
+        target.gameObject.SendMessage("Selected", false);
+
+        MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
+                                            this,
+                                            Vector3.one);
 
     }
 }

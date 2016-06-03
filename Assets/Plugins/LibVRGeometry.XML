@@ -4,6 +4,43 @@
         <name>LibVRGeometry</name>
     </assembly>
     <members>
+        <member name="T:LibVRGeometry.HDRobotArmMessage">
+            <summary>
+            剪刀
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mFaceAngle">
+            <summary>
+            水平夹角 A1
+            朝向(正为顺时针，负为逆时针)夹角
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mElbowAngle">
+            <summary>
+            垂直夹角A2
+            前臂和上臂(正为向上旋转，负为向下旋转)的夹角
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mShoulderHeight">
+            <summary>
+            肩高
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mUpperarmLen">
+            <summary>
+            上臂长度
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mForearmLen">
+            <summary>
+            前臂长度
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mOriginPos">
+            <summary>
+            机械臂坐标原点
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.CompressionType">
             <summary>
             压缩方式。
@@ -83,6 +120,27 @@
             <param name="inputStream">原始流。</param>
             <returns>返回压缩输入流。</returns>
         </member>
+        <member name="M:LibVRGeometry.MessageDecoder.ConvertToBase64(System.String)">
+            <summary>
+            转换成Base64的字符串
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibVRGeometry.MessageDecoder.ConvertFromBase64(System.String)">
+            <summary>
+            还原Base64字符串
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibVRGeometry.MessageDecoder.GetHeaderFromBase64(System.String)">
+            <summary>
+            还原Base64字符串
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
         <member name="T:LibVRGeometry.VBOBufferSingleFile">
             <summary>
             Obj文件的操作类
@@ -107,61 +165,6 @@
             编辑器信息
             </summary>
         </member>
-        <member name="T:LibVRGeometry.Message.UM_MDScissors">
-            <summary>
-            剪刀
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.UM_MDScissors.open_degree">
-            <summary>
-            控制在 float [0 - 1]之间
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.UM_MDScissors.merge_speed">
-            <summary>
-            咬合的速度
-            </summary>
-        </member>
-        <member name="T:LibVRGeometry.Message.IM_MD2HO">
-            <summary>
-            钛夹钳状态
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.IM_MD2HO.MD_ID">
-            <summary>
-            医疗设备ID
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.IM_MD2HO.HO_ID">
-            <summary>
-            器官ID
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.IM_MD2HO.Blade">
-            <summary>
-            是否有刃
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.IM_MD2HO.Pos">
-            <summary>
-            位置
-            </summary>
-        </member>
-        <member name="T:LibVRGeometry.Message.UM_MDTitaniumClamp">
-            <summary>
-            钛夹钳
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.UM_MDTitaniumClamp.open_degree">
-            <summary>
-            控制在 float [0 - 1]之间
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.Message.UM_MDTitaniumClamp.merge_speed">
-            <summary>
-            咬合的速度
-            </summary>
-        </member>
         <member name="T:LibVRGeometry.Message.SceneMessage">
             <summary>
             场景信息
@@ -172,44 +175,104 @@
             信息通知
             </summary>
         </member>
-        <member name="T:LibVRGeometry.MDMessage">
+        <member name="T:LibVRGeometry.HDMessage">
             <summary>
             器械.
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDMessage.type">
+        <member name="F:LibVRGeometry.HDMessage.type">
             <summary>
             ID
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDMessage.move_speed">
+        <member name="F:LibVRGeometry.HDMessage.move_speed">
             <summary>
             设备的移动速度 米/秒
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDMessage.rotate_speed">
+        <member name="F:LibVRGeometry.HDMessage.rotate_speed">
             <summary>
-            ID
+            旋转速率
             </summary>
         </member>
-        <member name="T:LibVRGeometry.MDType">
+        <member name="T:LibVRGeometry.HDScissorsMessage">
+            <summary>
+            剪刀
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDScissorsMessage.merge_degree">
+            <summary>
+            控制在 float [0 - 1]之间
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDScissorsMessage.merge_speed">
+            <summary>
+            咬合的速度
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.IM_MD2HO">
+            <summary>
+            钛夹钳状态
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.MD_ID">
+            <summary>
+            医疗设备ID
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.HO_ID">
+            <summary>
+            器官ID
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.Blade">
+            <summary>
+            是否有刃
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.Pos">
+            <summary>
+            位置
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.HDTitaniumClampMessage">
+            <summary>
+            钛夹钳
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDTitaniumClampMessage.merge_degree">
+            <summary>
+            控制在 float [0 - 1]之间
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDTitaniumClampMessage.merge_speed">
+            <summary>
+            咬合的速度
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.HDType">
             <summary>
             医学器材类型
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDType.Null">
+        <member name="F:LibVRGeometry.HDType.Null">
             <summary>
             空类型
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDType.TitaniumClamp">
+        <member name="F:LibVRGeometry.HDType.TitaniumClamp">
             <summary>
             钛夹
             </summary>
         </member>
-        <member name="F:LibVRGeometry.MDType.Scissors">
+        <member name="F:LibVRGeometry.HDType.Scissors">
             <summary>
             剪刀
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDType.RobotArm">
+            <summary>
+            机械手臂
             </summary>
         </member>
         <member name="T:LibVRGeometry.UnitMessage">
@@ -222,12 +285,7 @@
             ID
             </summary>
         </member>
-        <member name="F:LibVRGeometry.UnitMessage.move_speed">
-            <summary>
-            设备的移动速度 米/秒
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.UnitMessage.rotate_speed">
+        <member name="F:LibVRGeometry.UnitMessage.state">
             <summary>
             ID
             </summary>
@@ -326,6 +384,31 @@
             <summary>
             UNITY的MESH文件格式
             </summary>        
+        </member>
+        <member name="T:LibVRGeometry.UnitMessageState">
+            <summary>
+            Mesh的消息类型
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.UnitMessageState.Null">
+            <summary>
+            空
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.UnitMessageState.Create">
+            <summary>
+            新建一个Mesh
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.UnitMessageState.Modify">
+            <summary>
+            刷新Mesh
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.UnitMessageState.Destory">
+            <summary>
+            删除Mesh
+            </summary>
         </member>
         <member name="T:LibVRGeometry.FaceIndices">
             <summary>

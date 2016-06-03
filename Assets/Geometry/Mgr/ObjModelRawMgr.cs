@@ -64,7 +64,7 @@ public class ObjModelRawMgr
         o.buffer = smooth.Exe_GeometryBuffer();
         r.Deformation(ref o);
 
-        Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) / 1000.0f / 1000.0f + " s");
+        Debuger.Log("Modify " + (Time.realtimeSinceStartup - start) + " ms");
     }
 
     void DestoryVBOBuffer(VBOBuffer vbo)

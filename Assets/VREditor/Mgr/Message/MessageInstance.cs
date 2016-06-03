@@ -27,14 +27,25 @@ public class MessageInstance : IMessage
         throw new NotImplementedException();
     }
 
-    public void OnMDScissors(UM_MDScissors o)
+    public void OnMDScissors(HDScissorsMessage o)
     {
-        Debuger.Log("MessageInstance.OnMDScissors" + o.id);
+        Debuger.Log("MessageInstance.OnMDScissors" + MessageDecoder.EncodeMessage(o));
+
+        VBOBufferSingleMgr.Instance.Update(o);
     }
 
-    public void OnMDTitaniumClamp(UM_MDTitaniumClamp o)
+    public void OnMDTitaniumClamp(HDTitaniumClampMessage o)
     {
-        Debuger.Log("MessageInstance.OnMDTitaniumClamp" + o.id);
+        Debuger.Log("MessageInstance.OnMDTitaniumClamp" + MessageDecoder.EncodeMessage(o));
+
+        VBOBufferSingleMgr.Instance.Update(o);
+    }
+
+    public void OnMDRobotArm(HDRobotArmMessage o)
+    {
+        Debuger.Log("MessageInstance.OnMDRobotArm" + MessageDecoder.EncodeMessage(o));
+
+        VBOBufferSingleMgr.Instance.Update(o);
     }
 
     public void OnSceneMessage(SceneMessage o)
@@ -54,7 +65,8 @@ public class MessageInstance : IMessage
     /// <param name="buffer"></param>
     public void OnVBOBuffer(VBOBuffer buffer)
     {
-        Debuger.Log("MessageInstance.OnVBOBuffer" + buffer.id);
+        //Debuger.Log("MessageInstance.OnVBOBuffer" + buffer.id);
+
         mObjModelRawMgr.Update(buffer);
     }
 
@@ -65,6 +77,7 @@ public class MessageInstance : IMessage
     public void OnVBOBufferSingle(VBOBufferSingle buffer)
     {
         Debuger.Log("MessageInstance.OnVBOBufferSingle" + buffer.id);
+
         switch(buffer.vboType)
         {
             case VBOType.Null:

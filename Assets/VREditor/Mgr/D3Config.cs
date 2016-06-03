@@ -14,13 +14,13 @@ namespace U3DSceneEditor
 
         //
         //  地块的层 
-        static public int Layer_Groud = 8;
+        static public int Layer_MedicalDevices = 8;
 
         //  导航的层
         static public int Layer_Nav = 10;
 
         //  Trigger
-        public const int LAYER_TRIGGER = 9;
+        public const int Layer_Vbo = 9;
 
         //
         static public float Speed_Camera_Move = 0.5f;

@@ -31,7 +31,7 @@ namespace U3DSceneEditor
 
         virtual public void Start()
         {
-            gameObject.layer = D3Config.LAYER_TRIGGER;
+            gameObject.layer = D3Config.Layer_Vbo;
 
         }
 
@@ -49,6 +49,8 @@ namespace U3DSceneEditor
 
         virtual public void InitData(D3DataBase data)
         {
+            SetCollider();
+
             mData = data;
 
             //
@@ -65,11 +67,6 @@ namespace U3DSceneEditor
             transform.position = mData.Pos;
         }
 
-        virtual public void InitGO()
-        {
-            SetCollider();
-        }
-
         virtual public void UninitData()
         {
             
@@ -81,14 +78,14 @@ namespace U3DSceneEditor
         {
             //mData.Pos = transform.position;
 
-            if (m_sel)
+            if (m_sel && boxCollider)
             {
                 //GLGizmos.DrawSphere(transform.position + Vector3.up * 0.01f, SphereCircle, Color.gray);
 
                 GLGizmos.DrawCube(transform, boxCollider.bounds.size, Color.white);
             }
 
-            if (Physics.Raycast(transform.position + transform.up * 10000, transform.up * -1, out hit, Mathf.Infinity, 1 << D3Config.Layer_Nav | 1 << D3Config.Layer_Groud))
+            if (Physics.Raycast(transform.position + transform.up * 10000, transform.up * -1, out hit, Mathf.Infinity, 1 << D3Config.Layer_Nav | 1 << D3Config.Layer_MedicalDevices))
             {
                 Vector3 v = transform.position;
                 v.y = hit.point.y;
@@ -225,7 +222,7 @@ namespace U3DSceneEditor
                 return hit.point;
             }
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << D3Config.Layer_Groud))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << D3Config.Layer_MedicalDevices))
             {
                 Debug.Log(screenPos + " " + hit.point);
 
@@ -240,7 +237,7 @@ namespace U3DSceneEditor
             if (Physics.Raycast(pos + Vector3.up * 1000, -Vector3.up, out hit, Mathf.Infinity, 1 << D3Config.Layer_Nav))
                 return hit.point;
 
-            if (Physics.Raycast(pos + Vector3.up * 1000, -Vector3.up, out hit, Mathf.Infinity, 1 << D3Config.Layer_Groud))
+            if (Physics.Raycast(pos + Vector3.up * 1000, -Vector3.up, out hit, Mathf.Infinity, 1 << D3Config.Layer_MedicalDevices))
                 return hit.point;
 
             return transform.position;
@@ -292,11 +289,11 @@ namespace U3DSceneEditor
         {
             if (!bDrag) return;
 
-            WinFormData.instance.UpdatePosition(gameObject.name, transform.position);
+            //WinFormData.instance.UpdatePosition(gameObject.name, transform.position);
 
             if (!bRotation) return;
 
-            WinFormData.instance.UpdateDirection(gameObject.name, transform.rotation);
+            //WinFormData.instance.UpdateDirection(gameObject.name, transform.rotation);
         }
 
         virtual public void Rotation(Vector2 delta)
@@ -305,7 +302,7 @@ namespace U3DSceneEditor
 
             transform.RotateAround(Vector3.up, delta.x * Time.deltaTime);
 
-            WinFormData.instance.UpdateDirection(gameObject.name, transform.rotation);
+            //WinFormData.instance.UpdateDirection(gameObject.name, transform.rotation);
         }
 #endregion
 
@@ -352,7 +349,7 @@ namespace U3DSceneEditor
             {
                 m_sel = true;
 
-                WinFormData.instance.UpdateSelection(gameObject.name);
+                //WinFormData.instance.UpdateSelection(gameObject.name);
 
                 //  测试代码
                 //Global.instance.mD3Camera.Look(transform.position);

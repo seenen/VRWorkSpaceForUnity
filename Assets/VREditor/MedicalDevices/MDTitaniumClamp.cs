@@ -6,71 +6,36 @@ public class MDTitaniumClamp : MedicalDevices
 {
     public GameObject Target;
 
-    public GameObject End_1_Root_Fixed;
-    public GameObject End_2_Root_Cursor;
+    //  旋转轴
+    public GameObject Axis;
 
-    public GameObject End_1_Target_Fixed;
-    public GameObject End_2_Target_Cursor;
-
-    public Vector3 Cursor_Min_LocalPos;
-    public Vector3 Cursor_Max_LocalPos;
-    public Vector3 Cursor_LocalPos;
-    public Vector3 Dir;
-
-    public float testopendegree = 0;
+    public float Cur_Ange = 0;
     public float merge_speed = 1;
+
+    public float OPEN_ANGLE = -30;
+    public float CLOSE_ANGLE = 0;
 
     void Start()
     {
         MedicalDevicesMgr.instance.SetLeft(gameObject);
 
-        Cursor_Min_LocalPos = End_1_Target_Fixed.transform.localPosition;
-        Cursor_Max_LocalPos = End_2_Target_Cursor.transform.localPosition;
-
-        //  默认闭合
-        Cursor_LocalPos = Cursor_Min_LocalPos;
-    }
-
-    /// <summary>
-    /// 闭合 0 - 1 0表示闭合 1表示全部张开
-    /// </summary>
-    public void Progress(float opendegree)
-    {
-        testopendegree = Mathf.Clamp01(testopendegree);
-
-        LocalDir();
-
-        Cursor_LocalPos = Cursor_Min_LocalPos + Dir * testopendegree;
-
-        End_2_Target_Cursor.transform.localPosition = Cursor_LocalPos;
-    }
-
-    void LocalDir()
-    {
-        Dir = Cursor_Max_LocalPos - Cursor_Min_LocalPos;
+        Cur_Ange = OPEN_ANGLE;
     }
 
     void Update()
     {
         transform.LookAt(Target.transform.position);
 
-        End_2_Root_Cursor.transform.LookAt(End_2_Target_Cursor.transform.position);
-
 #if UNITY_EDITOR
-        Progress(testopendegree);
+        Progress(Cur_Ange);
 #endif
     }
 
-    void OnTriggerEnter(Collider collider)
+    public void Progress(float opendegree)
     {
-        Debug.Log("MDTitaniumClamp.OnTriggerEnter" + collider.gameObject.name + ":" + Time.time);
+        Cur_Ange = Mathf.Clamp(opendegree, OPEN_ANGLE, CLOSE_ANGLE);
 
-    }
-
-    void OnTriggerQuit(Collider collider)
-    {
-        Debug.Log("MDTitaniumClamp.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
-
+        Axis.transform.localRotation = Quaternion.Euler(0, 0, Cur_Ange);
     }
 
     #region keyboard
@@ -110,7 +75,7 @@ public class MDTitaniumClamp : MedicalDevices
         if (bShift)
         {
             tmp = Target.transform.position;
-            tmp.x += move_speed * Time.deltaTime;
+            tmp.x -= move_speed * Time.deltaTime;
             Target.transform.position = tmp;
 
             return;
@@ -124,7 +89,7 @@ public class MDTitaniumClamp : MedicalDevices
         if (bShift)
         {
             tmp = Target.transform.position;
-            tmp.x -= move_speed * Time.deltaTime;
+            tmp.x += move_speed * Time.deltaTime;
             Target.transform.position = tmp;
 
             return;
@@ -136,16 +101,31 @@ public class MDTitaniumClamp : MedicalDevices
 
     override public void WiseClock()
     {
-        testopendegree += Time.deltaTime * merge_speed;
+        Cur_Ange += Time.deltaTime * merge_speed;
 
-        Progress(testopendegree);
+        Progress(Cur_Ange);
     }
 
     override public void Clock()
     {
-        testopendegree -= Time.deltaTime * merge_speed;
+        Cur_Ange -= Time.deltaTime * merge_speed;
 
-        Progress(testopendegree);
+        Progress(Cur_Ange);
     }
-#endregion
+    #endregion
+
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("MDTitaniumClamp.OnTriggerEnter" + collider.gameObject.name + ":" + Time.time);
+
+    }
+
+    void OnTriggerQuit(Collider collider)
+    {
+        Debug.Log("MDTitaniumClamp.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
+
+    }
+
+
 }
