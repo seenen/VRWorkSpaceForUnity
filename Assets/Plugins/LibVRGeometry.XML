@@ -4,6 +4,20 @@
         <name>LibVRGeometry</name>
     </assembly>
     <members>
+        <member name="M:LibVRGeometry.Util.MathUtil.ConvertToRadians(System.Double)">
+            <summary>
+            角度转换成弧度
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LibVRGeometry.Util.MathUtil.ConvertToAngle(System.Double)">
+            <summary>
+            弧度转换成角度
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
         <member name="T:LibVRGeometry.HDRobotArmMessage">
             <summary>
             剪刀
@@ -23,22 +37,32 @@
         </member>
         <member name="F:LibVRGeometry.HDRobotArmMessage.mShoulderHeight">
             <summary>
-            肩高
+            肩高(米)
             </summary>
         </member>
         <member name="F:LibVRGeometry.HDRobotArmMessage.mUpperarmLen">
             <summary>
-            上臂长度
+            上臂长度(米)
             </summary>
         </member>
         <member name="F:LibVRGeometry.HDRobotArmMessage.mForearmLen">
             <summary>
-            前臂长度
+            前臂长度(米)
             </summary>
         </member>
         <member name="F:LibVRGeometry.HDRobotArmMessage.mOriginPos">
             <summary>
             机械臂坐标原点
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mToolHead">
+            <summary>
+            器材头部位置
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mToolKey">
+            <summary>
+            机械臂和器材连接点
             </summary>
         </member>
         <member name="T:LibVRGeometry.CompressionType">
@@ -193,6 +217,16 @@
         <member name="F:LibVRGeometry.HDMessage.rotate_speed">
             <summary>
             旋转速率
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDMessage.length">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDMessage.width">
+            <summary>
+            宽度
             </summary>
         </member>
         <member name="T:LibVRGeometry.HDScissorsMessage">
@@ -475,6 +509,44 @@
             当前消息的时间戳 
             C#: System.DateTime.Now.Millisecond
             </summary>
+        </member>
+        <member name="T:LibVRGeometry.VRWorld.RobotArm">
+            <summary>
+            机械手臂
+            </summary>
+        </member>
+        <member name="M:LibVRGeometry.VRWorld.RobotArm.#ctor">
+            <summary>
+            机械臂的
+            </summary>
+            <param name="ShoulderHeight">肩高</param>
+            <param name="UpperarmLen">上臂长度</param>
+            <param name="ForearmLen">前臂长度</param>
+        </member>
+        <member name="M:LibVRGeometry.VRWorld.RobotArm.UpdateTool(System.Single,System.Single)">
+            <summary>
+            更新工具位置
+            </summary>
+            <param name="toollen">工具总长</param>
+            <param name="upperpartlen">工具到顶部位置</param>
+        </member>
+        <member name="M:LibVRGeometry.VRWorld.RobotArm.Fresh(LibVRGeometry.HDRobotArmMessage)">
+            <summary>
+            
+            </summary>
+            <param name="angle"></param>
+        </member>
+        <member name="M:LibVRGeometry.VRWorld.VRAPI.UpdateLeftRobotArm(LibVRGeometry.HDRobotArmMessage,System.Single)">
+            <summary>
+            给左边机械手绑定器械
+            </summary>
+            <param name="hdmsg"></param>
+        </member>
+        <member name="M:LibVRGeometry.VRWorld.VRAPI.UpdateRightRobotArm(LibVRGeometry.HDRobotArmMessage,System.Single)">
+            <summary>
+            给右边机械手绑定器械
+            </summary>
+            <param name="hdmsg"></param>
         </member>
     </members>
 </doc>

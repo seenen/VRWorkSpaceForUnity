@@ -100,7 +100,7 @@ namespace U3DSceneEditor
                 md.UpdateMdData((HDMessage)um);
             }
             else
-                Debuger.LogError("No Exist " + um.id);
+                Debuger.LogError("UMUpdate No Exist " + um.id);
         }
 
         void UMDelete(UnitMessage um)
@@ -114,7 +114,7 @@ namespace U3DSceneEditor
                 allHash.Remove(UM2Name(um));
             }
             else
-                Debuger.LogError("No Exist " + UM2Name(um));
+                Debuger.LogError("UMDelete No Exist " + UM2Name(um));
         }
         #endregion
 
@@ -181,7 +181,7 @@ namespace U3DSceneEditor
                 ((D3VBOBuffSingle)d).UpdateVBO(vbo);
             }
             else
-                Debuger.LogError("No Exist " + vbo.id);
+                Debuger.LogError("ModifyVBOBuffer No Exist " + vbo.id);
 
         }
 
@@ -197,7 +197,7 @@ namespace U3DSceneEditor
                 allHash.Remove(VBO2Name(vbo));
             }
             else
-                Debuger.LogError("No Exist " + VBO2Name(vbo));
+                Debuger.LogError("DestoryVBOBuffer No Exist " + VBO2Name(vbo));
         }
         #endregion
 
@@ -246,7 +246,7 @@ namespace U3DSceneEditor
 
             if (!allHash.ContainsKey(selname))
             {
-                Debuger.LogError("No Exist " + selname);
+                Debuger.LogError("SelectionObject No Exist " + selname);
 
                 return null;
             }

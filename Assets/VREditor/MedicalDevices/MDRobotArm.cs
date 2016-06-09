@@ -11,10 +11,23 @@ public class MDRobotArm : MedicalDevices
 
     public GameObject hand;
 
+    public GameObject head;
+
+    public HDRobotArmMessage mHDRobotArmMessage;
+
     public void UpdateData(HDRobotArmMessage arm)
     {
-        transform.position = new Vector3(arm.mOriginPos.X, arm.mOriginPos.Y, arm.mOriginPos.Z);
+        mHDRobotArmMessage = arm;
 
-        shoulder.transform.localPosition = new Vector3(0, arm.mShoulderHeight, 0);
+        shoulder.transform.localPosition = new Vector3(0, arm.mShoulderHeight / 100f, 0);
+
+        hand.transform.localPosition = new Vector3( arm.mToolKey.Z / 100f,
+                                                    arm.mToolKey.Y / 100f,
+                                                    arm.mToolKey.X / 100f);
+
+        head.transform.localPosition = new Vector3( arm.mToolHead.Z / 100f,
+                                                    arm.mToolHead.Y / 100f,
+                                                    arm.mToolHead.X / 100f);
     }
+
 }
