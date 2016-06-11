@@ -24,7 +24,7 @@ public class MDTitaniumClamp : MedicalDevices
 
     void Update()
     {
-        transform.LookAt(Target.transform.position);
+        //transform.LookAt(Target.transform.position);
 
 #if UNITY_EDITOR
         Progress(Cur_Ange);

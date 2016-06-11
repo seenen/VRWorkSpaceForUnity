@@ -39,6 +39,7 @@ namespace U3DSceneEditor
                     break;
                 case HDType.RobotArm:
                     mMonoMedicalDevices = GameObject.Find("MDRobotArm").GetComponent<MDRobotArm>();
+                    ((MDRobotArm)mMonoMedicalDevices).mBind = GameObject.Find("MDTitaniumClamp");
                     break;
             }
 

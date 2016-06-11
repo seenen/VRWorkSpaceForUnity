@@ -65,6 +65,11 @@
             机械臂和器材连接点
             </summary>
         </member>
+        <member name="F:LibVRGeometry.HDRobotArmMessage.mToolElbow">
+            <summary>
+            机械臂肘部位置
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.CompressionType">
             <summary>
             压缩方式。
@@ -536,7 +541,7 @@
             </summary>
             <param name="angle"></param>
         </member>
-        <member name="M:LibVRGeometry.VRWorld.VRAPI.UpdateLeftRobotArm(LibVRGeometry.HDRobotArmMessage,System.Single)">
+        <member name="M:LibVRGeometry.VRWorld.VRAPI.UpdateLeftRobotArm(LibVRGeometry.HDRobotArmMessage@,System.Single)">
             <summary>
             给左边机械手绑定器械
             </summary>
