@@ -24,7 +24,7 @@ public class FingerControlBase : MonoBehaviour
     #region Gesture event registration/unregistration
     void OnEnable()
     {
-        Debug.Log("Registering finger gesture events from C# script");
+        Debuger.Log("Registering finger gesture events from C# script");
 
         // register input events
         FingerGestures.OnFingerLongPress += FingerGestures_OnFingerLongPress;
@@ -157,12 +157,12 @@ public class FingerControlBase : MonoBehaviour
     #region KeyBoard
     virtual public void KeyDown(KeyCode kc)
     {
-        Debug.Log("KeyDown " + kc.ToString());
+        Debuger.Log("KeyDown " + kc.ToString());
     }
 
     virtual public void KeyUp(KeyCode kc)
     {
-        Debug.Log("KeyUp " + kc.ToString());
+        Debuger.Log("KeyUp " + kc.ToString());
     }
 
     #endregion  // KeyBoard
@@ -253,7 +253,7 @@ public class FingerControlBase : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, mask))
         {
-            Debug.Log(hit.collider.name);
+            Debuger.Log(hit.collider.name);
             return true;
         }
 

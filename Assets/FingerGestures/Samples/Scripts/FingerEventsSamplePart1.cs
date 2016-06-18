@@ -61,7 +61,7 @@ INSTRUCTIONS:
 
     void OnEnable()
     {
-        Debug.Log( "Registering finger gesture events from C# script" );
+        Debuger.Log( "Registering finger gesture events from C# script" );
 
         // register input events
         FingerGestures.OnFingerDown += FingerGestures_OnFingerDown;
@@ -97,7 +97,7 @@ INSTRUCTIONS:
         // this shows how to access a finger object using its index
         // The finger object contains useful information not available through the event arguments that you might want to use
         FingerGestures.Finger finger = FingerGestures.GetFinger( fingerIndex );
-        Debug.Log( "Finger was lifted up at " + finger.Position + " and moved " + finger.DistanceFromStart.ToString( "N0" ) + " pixels from its initial position at " + finger.StartPosition );
+        Debuger.Log( "Finger was lifted up at " + finger.Position + " and moved " + finger.DistanceFromStart.ToString( "N0" ) + " pixels from its initial position at " + finger.StartPosition );
     }
 
     #region Stationary events

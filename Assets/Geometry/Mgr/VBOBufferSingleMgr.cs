@@ -222,7 +222,7 @@ namespace U3DSceneEditor
             }
             GameObject obj = SelectionObject(selname);
 
-            Debug.Log(obj);
+            Debuger.Log(obj);
 
             return obj;
 

@@ -22,11 +22,6 @@ public class MessageInstance : IMessage
         Debuger.Log("MessageInstance.EditorMessage" + em.name);
     }
 
-    public void OnMD2HO(IM_MD2HO o)
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnMDScissors(HDScissorsMessage o)
     {
         Debuger.Log("MessageInstance.OnMDScissors" + MessageDecoder.EncodeMessage(o));
@@ -52,7 +47,7 @@ public class MessageInstance : IMessage
     {
         Debuger.Log("MessageInstance.OnSceneMessage" + o.scene_name);
 
-        SceneManager.LoadScene("GallBladder_Cutting", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("GallBladder_Cutting", LoadSceneMode.Additive);
 
         //MedicalDevicesMgr.instance.SetLeft(GameObject.Find("MDTitaniumClamp"));
 
@@ -90,4 +85,15 @@ public class MessageInstance : IMessage
         }
     }
 
+    public void OnEnvCfg(EnvCfg o)
+    {
+        Debuger.Log("MessageInstance.OnEnvCfg " + o.Log);
+
+        Debuger.EnableLog = bool.Parse(o.Log);
+    }
+
+    public void OnMD2HO(IM_MD2HO o)
+    {
+        throw new NotImplementedException();
+    }
 }

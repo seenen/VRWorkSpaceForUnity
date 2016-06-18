@@ -4,6 +4,21 @@
         <name>LibVRGeometry</name>
     </assembly>
     <members>
+        <member name="T:LibVRGeometry.Message.EnvCfg">
+            <summary>
+            场景信息
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.Message.EditorMessage">
+            <summary>
+            编辑器信息
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.Message.SceneMessage">
+            <summary>
+            场景信息
+            </summary>
+        </member>
         <member name="M:LibVRGeometry.Util.MathUtil.ConvertToRadians(System.Double)">
             <summary>
             角度转换成弧度
@@ -189,20 +204,21 @@
             <param name="m"></param>
             <returns></returns>
         </member>
-        <member name="T:LibVRGeometry.Message.EditorMessage">
+        <member name="T:LibVRGeometry.IMessage_C2U">
             <summary>
-            编辑器信息
+            Winform发送到U3D
             </summary>
         </member>
-        <member name="T:LibVRGeometry.Message.SceneMessage">
+        <member name="T:LibVRGeometry.IMessage_U2C">
             <summary>
-            场景信息
+            U3D发到Winform的消息 用于接收碰撞等引擎内消息
             </summary>
         </member>
-        <member name="T:LibVRGeometry.IMessage">
+        <member name="M:LibVRGeometry.IMessage_U2C.OnMD2HO(LibVRGeometry.IM_MD2HO)">
             <summary>
-            信息通知
+            器材和器官的碰撞
             </summary>
+            <param name="o"></param>
         </member>
         <member name="T:LibVRGeometry.HDMessage">
             <summary>

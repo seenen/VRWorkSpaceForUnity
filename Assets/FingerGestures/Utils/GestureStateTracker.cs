@@ -25,6 +25,6 @@ public class GestureStateTracker : MonoBehaviour
 
     void gesture_OnStateChanged( GestureRecognizer source )
     {
-        Debug.Log( "Gesture " + source + " changed from " + source.PreviousState + " to " + source.State );
+        Debuger.Log( "Gesture " + source + " changed from " + source.PreviousState + " to " + source.State );
     }
 }

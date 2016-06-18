@@ -16,7 +16,7 @@ public class TouchPhaseVisualizer : MonoBehaviour
         {
             if( phase != value )
             {
-                Debug.Log( "Phase transition: " + phase + " -> " + value );
+                Debuger.Log( "Phase transition: " + phase + " -> " + value );
                 phase = value;
             }
         }

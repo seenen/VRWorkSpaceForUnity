@@ -182,7 +182,7 @@ public abstract class GestureRecognizer : FGComponent
                 break;
 
             default:
-                Debug.LogError( this + " - Unhandled state: " + State + ". Failing recognizer." );
+                Debuger.LogError( this + " - Unhandled state: " + State + ". Failing recognizer." );
                 State = GestureState.Failed;
                 break;
         }

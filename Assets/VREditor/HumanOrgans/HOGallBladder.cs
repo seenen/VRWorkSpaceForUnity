@@ -21,7 +21,7 @@ public class HOGallBladder : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("HOGallBladder.OnTriggerEnter" + collider.gameObject.name + ":" + Time.time);
+        Debuger.Log("HOGallBladder.OnTriggerEnter" + collider.gameObject.name + ":" + Time.time);
 
         if (collider.gameObject.layer == D3Config.Layer_MedicalDevices)
         {
@@ -32,7 +32,7 @@ public class HOGallBladder : MonoBehaviour
 
     void OnTriggerExit(Collider collider)
     {
-        Debug.Log("HOGallBladder.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
+        Debuger.Log("HOGallBladder.OnTriggerQuit" + collider.gameObject.name + ":" + Time.time);
 
         if (collider.gameObject.layer == D3Config.Layer_MedicalDevices)
         {
@@ -43,7 +43,7 @@ public class HOGallBladder : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("HOGallBladder.OnCollisionEnter" + collision.gameObject.name + ":" + Time.time);
+        Debuger.Log("HOGallBladder.OnCollisionEnter" + collision.gameObject.name + ":" + Time.time);
 
         if (collision.gameObject.layer == D3Config.Layer_MedicalDevices)
         {
@@ -53,7 +53,7 @@ public class HOGallBladder : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        Debug.Log("HOGallBladder.OnCollisionExit" + collision.gameObject.name + ":" + Time.time);
+        Debuger.Log("HOGallBladder.OnCollisionExit" + collision.gameObject.name + ":" + Time.time);
 
         if (collision.gameObject.layer == D3Config.Layer_MedicalDevices)
         {

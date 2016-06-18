@@ -12,9 +12,9 @@ public class MedicalDevicesMgr : MonoBehaviour
     {
         instance = this;
 
-#if UNITY_EDITOR
-        SceneManager.LoadScene("GallBladder_Cutting", LoadSceneMode.Additive);
-#endif
+//#if UNITY_EDITOR
+//        SceneManager.LoadScene("GallBladder_Cutting", LoadSceneMode.Additive);
+//#endif
     }
 
     void Start()
@@ -49,13 +49,13 @@ public class MedicalDevicesMgr : MonoBehaviour
     /// <param name="ho"></param>
     public void Trigger(ComponentBlade cb, HOGallBladder ho, Vector3 pos)
     {
-#if !UNITY_EDITOR
         IM_MD2HO im = new IM_MD2HO();
         im.MD_ID = cb.md.id;
         im.HO_ID = ho.id;
         im.Pos = new _Vector3(pos.x, pos.y, pos.z);
         im.time = System.DateTime.Now;
 
+#if !UNITY_EDITOR
         string o = MessageDecoder.EncodeMessageByProtobuf<IM_MD2HO>(im);
 
         CallMessage.Instance.CallMsg(o);

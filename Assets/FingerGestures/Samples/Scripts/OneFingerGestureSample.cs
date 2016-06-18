@@ -42,7 +42,7 @@ public class OneFingerGestureSample : SampleBase
 
 void OnEnable()
 {
-    Debug.Log( "Registering finger gesture events from C# script" );
+    Debuger.Log( "Registering finger gesture events from C# script" );
 
     // register input events
     FingerGestures.OnFingerLongPress += FingerGestures_OnFingerLongPress;
@@ -81,7 +81,7 @@ void OnEnable()
         // spawn some particles when tapping the object at least requiredTapCount times
         if( tapCount >= requiredTapCount )
         {
-            Debug.Log( "Tapcount: " + tapCount );
+            Debuger.Log( "Tapcount: " + tapCount );
 
             if( CheckSpawnParticles( fingerPos, tapObject ) )
             {

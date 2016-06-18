@@ -24,6 +24,35 @@ public class _Message_Json_ : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 用于缓存C#传过来的网格相关的讯息
+    /// </summary>
+    Queue<VBOBufferSingle> list = new Queue<VBOBufferSingle>();
+
+    /// <summary>
+    /// 网格多线程锁
+    /// </summary>
+    System.Object msg_vbo_lock = new System.Object();
+
+    void Update()
+    {
+        if (list.Count == 0)
+            return;
+
+        //  在Update里处理网格
+        lock(msg_vbo_lock)
+        {
+            VBOBufferSingle vbos = list.Dequeue();
+
+            if (vbos == null)
+                return;
+
+            VBOBufferSingleMgr.Instance.Update(vbos);
+
+        }
+
+    }
+
     public IEnumerator LoadVBOBufferSingle()
     {
         {
@@ -111,14 +140,26 @@ public class _Message_Json_ : MonoBehaviour
     {
         Debuger.Log("RenderVBOBufferSingle" + vbo.id);
 
-        VBOBufferSingleMgr.Instance.Update(vbo);
+        lock (msg_vbo_lock)
+        {
+            list.Enqueue(vbo);
+
+        }
+
+        //VBOBufferSingleMgr.Instance.Update(vbo);
     }
 
     void DeleteVBOBufferSingle(VBOBufferSingle vbo)
     {
         Debuger.Log("DeleteVBOBufferSingle" + vbo.id);
 
-        VBOBufferSingleMgr.Instance.Update(vbo);
+        lock (msg_vbo_lock)
+        {
+            list.Enqueue(vbo);
+
+        }
+
+        //VBOBufferSingleMgr.Instance.Update(vbo);
     }
 
     //public IEnumerator LoadVBO()

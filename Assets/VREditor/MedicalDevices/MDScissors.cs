@@ -4,8 +4,6 @@ using System.Collections;
 [ExecuteInEditMode]
 public class MDScissors : MedicalDevices
 {
-    public GameObject Target;
-
     //  旋转轴
     public GameObject Axis_L;
     public GameObject Axis_R;
@@ -19,13 +17,11 @@ public class MDScissors : MedicalDevices
 
     void Start()
     {
-        MedicalDevicesMgr.instance.SetRight(gameObject);
+        //MedicalDevicesMgr.instance.SetRight(gameObject);
     }
 
     void Update()
     {
-        transform.LookAt(Target.transform.position);
-
 #if UNITY_EDITOR
         Progress(openangle);
 #endif
@@ -44,28 +40,12 @@ public class MDScissors : MedicalDevices
 
     override public void Up()
     {
-        if (bShift)
-        {
-            tmp = Target.transform.position;
-            tmp.y += move_speed * Time.deltaTime;
-            Target.transform.position = tmp;
-
-            return;
-        }
 
         base.Up();
     }
 
     override public void Down()
     {
-        if (bShift)
-        {
-            tmp = Target.transform.position;
-            tmp.y -= move_speed * Time.deltaTime;
-            Target.transform.position = tmp;
-
-            return;
-        }
 
         base.Down();
     }
@@ -73,28 +53,12 @@ public class MDScissors : MedicalDevices
 
     override public void Left()
     {
-        if (bShift)
-        {
-            tmp = Target.transform.position;
-            tmp.x -= move_speed * Time.deltaTime;
-            Target.transform.position = tmp;
-
-            return;
-        }
 
         base.Left();
     }
 
     override public void Right()
     {
-        if (bShift)
-        {
-            tmp = Target.transform.position;
-            tmp.x += move_speed * Time.deltaTime;
-            Target.transform.position = tmp;
-
-            return;
-        }
 
         base.Right();
     }

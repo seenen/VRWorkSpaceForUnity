@@ -102,7 +102,7 @@ namespace U3DSceneEditor
         //    Xmin = 0 + tempX * Mathf.Sin((angle1 / 2) * Mathf.PI / 180) * wh;
         //    Xmax = mapWidth - tempX * Mathf.Sin((angle1 / 2) * Mathf.PI / 180) * wh;
 
-        //    Debug.Log("          .........    Xmin="+Xmin+"    Xmax="+Xmax+"    Ymin="+Ymin+"    Ymax="+Ymax);
+        //    Debuger.Log("          .........    Xmin="+Xmin+"    Xmax="+Xmax+"    Ymin="+Ymin+"    Ymax="+Ymax);
 
         //}
 

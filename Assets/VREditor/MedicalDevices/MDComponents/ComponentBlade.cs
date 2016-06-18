@@ -23,7 +23,7 @@ public class ComponentBlade : MonoBehaviour
 
     public void Selected( bool flag )
     {
-        Debug.Log("ComponentBlade.Selected " + flag);
+        Debuger.Log("ComponentBlade.Selected " + flag);
 
         if (flag)
             mRenderer.material = MaterialManager.GetBeginMat();

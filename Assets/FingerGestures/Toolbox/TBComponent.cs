@@ -33,7 +33,7 @@ public abstract class TBComponent : MonoBehaviour
     {
         if( !GetComponent<Collider>() )
         {
-            Debug.LogError( this.name + " must have a valid collider." );
+            Debuger.LogError( this.name + " must have a valid collider." );
             enabled = false;
         }
     }

@@ -127,7 +127,7 @@ LEGEND:
 
     void OnEnable()
     {
-        Debug.Log( "Registering finger gesture events from C# script" );
+        Debuger.Log( "Registering finger gesture events from C# script" );
 
         // register input events
         FingerGestures.OnFingerDown += FingerGestures_OnFingerDown;

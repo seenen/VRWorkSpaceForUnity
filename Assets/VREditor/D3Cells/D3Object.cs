@@ -217,14 +217,14 @@ namespace U3DSceneEditor
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << D3Config.Layer_Nav))
             {
-                Debug.Log(screenPos + " " + hit.point);
+                Debuger.Log(screenPos + " " + hit.point);
 
                 return hit.point;
             }
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << D3Config.Layer_MedicalDevices))
             {
-                Debug.Log(screenPos + " " + hit.point);
+                Debuger.Log(screenPos + " " + hit.point);
 
                 return hit.point;
             }

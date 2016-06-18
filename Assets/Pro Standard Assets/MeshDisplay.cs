@@ -17,12 +17,12 @@ public class MeshDisplay : MonoBehaviour {
 	void OnDrawGizmosSelected() {
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		if (meshFilter==null){
-			Debug.LogWarning("Cannot find MeshFilter");
+			Debuger.LogWarning("Cannot find MeshFilter");
 			return;
 		}
 		Mesh mesh = meshFilter.sharedMesh;
 		if (mesh==null){
-			Debug.LogWarning("Cannot find mesh");
+			Debuger.LogWarning("Cannot find mesh");
 			return;
 		}
         bool doShowNormals = showNormals && mesh.normals.Length==mesh.vertices.Length;

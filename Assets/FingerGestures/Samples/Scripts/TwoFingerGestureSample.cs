@@ -42,7 +42,7 @@ public class TwoFingerGestureSample : SampleBase
 
     void OnEnable()
     {
-        Debug.Log( "Registering finger gesture events from C# script" );
+        Debuger.Log( "Registering finger gesture events from C# script" );
 
         // register input events
         FingerGestures.OnTwoFingerLongPress += FingerGestures_OnTwoFingerLongPress;

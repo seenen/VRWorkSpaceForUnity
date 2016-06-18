@@ -846,7 +846,7 @@ public abstract class FingerGestures : MonoBehaviour
                 // skip the "Ended" phase
                 if( newPhase == FingerPhase.None && phase != FingerPhase.Ended )
                 {
-                    Debug.LogWarning( "Correcting bad FingerPhase transition (FingerPhase.Ended skipped)" );
+                    Debuger.LogWarning( "Correcting bad FingerPhase transition (FingerPhase.Ended skipped)" );
                     Update( FingerPhase.Ended, PreviousPosition );
                     return;
                 }
@@ -854,14 +854,14 @@ public abstract class FingerGestures : MonoBehaviour
                 // cannot get a Moved or Stationary phase without being down first
                 if( !down && ( newPhase == FingerPhase.Moved || newPhase == FingerPhase.Stationary ) )
                 {
-                    Debug.LogWarning( "Correcting bad FingerPhase transition (FingerPhase.Began skipped)" );
+                    Debuger.LogWarning( "Correcting bad FingerPhase transition (FingerPhase.Began skipped)" );
                     Update( FingerPhase.Began, newPos );
                     return;
                 }
 
                 if( ( down && newPhase == FingerPhase.Began ) || ( !down && newPhase == FingerPhase.Ended ) )
                 {
-                    Debug.LogWarning( "Invalid state FingerPhase transition from " + phase + " to " + newPhase + " - Skipping." );
+                    Debuger.LogWarning( "Invalid state FingerPhase transition from " + phase + " to " + newPhase + " - Skipping." );
                     return;
                 }
             }
@@ -869,7 +869,7 @@ public abstract class FingerGestures : MonoBehaviour
             {
                 if( newPhase == FingerPhase.Began || newPhase == FingerPhase.Ended )
                 {
-                    Debug.LogWarning( "Duplicated FingerPhase." + newPhase.ToString() + " - skipping." );
+                    Debuger.LogWarning( "Duplicated FingerPhase." + newPhase.ToString() + " - skipping." );
                     return;
                 }
             }
