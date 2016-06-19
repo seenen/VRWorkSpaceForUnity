@@ -14,6 +14,8 @@ public class ComponentBlade : MonoBehaviour
 
     public Renderer mRenderer;
 
+    public int order;
+
     void Start()
     {
         mRenderer = gameObject.GetComponent<Renderer>();

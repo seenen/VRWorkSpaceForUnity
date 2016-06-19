@@ -280,14 +280,24 @@
             器官ID
             </summary>
         </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.Blade">
+        <member name="F:LibVRGeometry.IM_MD2HO.EndPointLeft">
             <summary>
-            是否有刃
+            左端点
             </summary>
         </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.Pos">
+        <member name="F:LibVRGeometry.IM_MD2HO.EndPointLeftIsCollision">
             <summary>
-            位置
+            左端点是否碰撞
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.EndPointRight">
+            <summary>
+            右端点
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.EndPointRightIsCollision">
+            <summary>
+            右端点是否碰撞
             </summary>
         </member>
         <member name="T:LibVRGeometry.HDTitaniumClampMessage">

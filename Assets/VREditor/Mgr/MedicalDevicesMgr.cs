@@ -52,7 +52,19 @@ public class MedicalDevicesMgr : MonoBehaviour
         IM_MD2HO im = new IM_MD2HO();
         im.MD_ID = cb.md.id;
         im.HO_ID = ho.id;
-        im.Pos = new _Vector3(pos.x, pos.y, pos.z);
+
+        if (cb.order == 0)
+        {
+            im.EndPointLeft = cb.order;
+            im.EndPointLeftIsCollision = true;
+
+        }
+        if (cb.order == 1)
+        {
+            im.EndPointRight = cb.order;
+            im.EndPointRightIsCollision = true;
+
+        }
         im.time = System.DateTime.Now;
 
 #if !UNITY_EDITOR

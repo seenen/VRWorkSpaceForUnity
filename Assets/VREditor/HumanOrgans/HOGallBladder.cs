@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using U3DSceneEditor;
+using LibVRGeometry;
 
 public class HOGallBladder : MonoBehaviour
 {
@@ -66,9 +67,11 @@ public class HOGallBladder : MonoBehaviour
     {
         target.gameObject.SendMessage("Selected", true);
 
-        MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
-                                            this,
-                                            Vector3.one);
+        UpdateState(target.gameObject.GetComponent<ComponentBlade>(), true);
+
+        //MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
+        //                                    this,
+        //                                    Vector3.one);
 
     }
 
@@ -76,9 +79,34 @@ public class HOGallBladder : MonoBehaviour
     {
         target.gameObject.SendMessage("Selected", false);
 
-        MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
-                                            this,
-                                            Vector3.one);
+        UpdateState(target.gameObject.GetComponent<ComponentBlade>(), false);
+
+        //MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
+        //                                    this,
+        //                                    Vector3.one);
+
+    }
+
+    IM_MD2HO im = new IM_MD2HO();
+
+    void UpdateState(ComponentBlade cb, bool select)
+    {
+        if (cb.order == 0)
+        {
+            im.EndPointLeft = cb.order;
+            im.EndPointLeftIsCollision = select;
+
+        }
+        if (cb.order == 1)
+        {
+            im.EndPointRight = cb.order;
+            im.EndPointRightIsCollision = select;
+
+        }
+
+        string o = MessageDecoder.EncodeMessageByProtobuf<IM_MD2HO>(im);
+
+        CallMessage.Instance.CallMsg(o);
 
     }
 }
