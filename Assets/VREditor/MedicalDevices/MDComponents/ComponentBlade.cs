@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LibVRGeometry;
 
 public class ComponentBlade : MonoBehaviour
 {
+    /// <summary>
+    /// 脚本绑定的组件
+    /// </summary>
+    public HDComponentMessage cm;
+
     /// <summary>
     /// 隶属设备
     /// </summary>

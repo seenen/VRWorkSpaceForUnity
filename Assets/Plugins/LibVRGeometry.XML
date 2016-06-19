@@ -4,6 +4,56 @@
         <name>LibVRGeometry</name>
     </assembly>
     <members>
+        <member name="T:LibVRGeometry.HDComponentMessage">
+            <summary>
+            器械的组件属性
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDComponentMessage.MD_ID">
+            <summary>
+            所属的器材的ID
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDComponentMessage.it">
+            <summary>
+            交互属性
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDComponentMessage.IsCollision">
+            <summary>
+            是否碰撞
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDComponentMessage.CollisionPos">
+            <summary>
+            碰撞位置
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDComponentMessage.objName">
+            <summary>
+            当前组件绑定的物体对象
+            </summary>
+        </member>
+        <member name="T:LibVRGeometry.InteractiveType">
+            <summary>
+            交互属性
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.InteractiveType.Null">
+            <summary>
+            空类型
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.InteractiveType.Broken">
+            <summary>
+            可穿透
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.InteractiveType.Block">
+            <summary>
+            可阻挡
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.Message.EnvCfg">
             <summary>
             场景信息
@@ -250,6 +300,11 @@
             宽度
             </summary>
         </member>
+        <member name="F:LibVRGeometry.HDMessage.cms">
+            <summary>
+            组件信息
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.HDScissorsMessage">
             <summary>
             剪刀
@@ -280,24 +335,9 @@
             器官ID
             </summary>
         </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.EndPointLeft">
+        <member name="F:LibVRGeometry.IM_MD2HO.coms">
             <summary>
-            左端点
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.EndPointLeftIsCollision">
-            <summary>
-            左端点是否碰撞
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.EndPointRight">
-            <summary>
-            右端点
-            </summary>
-        </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.EndPointRightIsCollision">
-            <summary>
-            右端点是否碰撞
+            发生交互的组件
             </summary>
         </member>
         <member name="T:LibVRGeometry.HDTitaniumClampMessage">
