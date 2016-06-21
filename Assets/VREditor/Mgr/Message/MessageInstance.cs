@@ -96,4 +96,9 @@ public class MessageInstance : IMessage
     {
         throw new NotImplementedException();
     }
+
+    public void OnAddMessage(HDScissorsMessage sm, HDTitaniumClampMessage tc)
+    {
+        throw new NotImplementedException();
+    }
 }

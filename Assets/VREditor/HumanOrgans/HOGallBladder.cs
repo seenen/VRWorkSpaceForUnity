@@ -69,10 +69,6 @@ public class HOGallBladder : MonoBehaviour
 
         UpdateState(target.gameObject.GetComponent<ComponentBlade>(), true);
 
-        //MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
-        //                                    this,
-        //                                    Vector3.one);
-
     }
 
     void Unacti(GameObject target)
@@ -81,28 +77,16 @@ public class HOGallBladder : MonoBehaviour
 
         UpdateState(target.gameObject.GetComponent<ComponentBlade>(), false);
 
-        //MedicalDevicesMgr.instance.Trigger(target.gameObject.GetComponent<ComponentBlade>(), 
-        //                                    this,
-        //                                    Vector3.one);
-
-    }
+    } 
 
     IM_MD2HO im = new IM_MD2HO();
 
     void UpdateState(ComponentBlade cb, bool select)
     {
-        if (cb.order == 0)
-        {
-            im.EndPointLeft = cb.order;
-            im.EndPointLeftIsCollision = select;
+        im.MD_ID = cb.md.id;
 
-        }
-        if (cb.order == 1)
-        {
-            im.EndPointRight = cb.order;
-            im.EndPointRightIsCollision = select;
-
-        }
+        im.interactiveComName = cb.gameObject.name;
+        im.Collider = select;
 
         string o = MessageDecoder.EncodeMessageByProtobuf<IM_MD2HO>(im);
 

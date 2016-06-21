@@ -29,7 +29,7 @@
             碰撞位置
             </summary>
         </member>
-        <member name="F:LibVRGeometry.HDComponentMessage.objName">
+        <member name="F:LibVRGeometry.HDComponentMessage.interactiveComName">
             <summary>
             当前组件绑定的物体对象
             </summary>
@@ -264,6 +264,13 @@
             U3D发到Winform的消息 用于接收碰撞等引擎内消息
             </summary>
         </member>
+        <member name="M:LibVRGeometry.IMessage_U2C.OnAddMessage(LibVRGeometry.HDScissorsMessage,LibVRGeometry.HDTitaniumClampMessage)">
+            <summary>
+            世界创建的回调
+            </summary>
+            <param name="sm">钳子</param>
+            <param name="tc">剪子</param>
+        </member>
         <member name="M:LibVRGeometry.IMessage_U2C.OnMD2HO(LibVRGeometry.IM_MD2HO)">
             <summary>
             器材和器官的碰撞
@@ -320,6 +327,16 @@
             咬合的速度
             </summary>
         </member>
+        <member name="F:LibVRGeometry.HDScissorsMessage.left">
+            <summary>
+            左边钳子
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDScissorsMessage.right">
+            <summary>
+            右边钳子
+            </summary>
+        </member>
         <member name="T:LibVRGeometry.IM_MD2HO">
             <summary>
             钛夹钳状态
@@ -335,9 +352,14 @@
             器官ID
             </summary>
         </member>
-        <member name="F:LibVRGeometry.IM_MD2HO.coms">
+        <member name="F:LibVRGeometry.IM_MD2HO.interactiveComName">
             <summary>
             发生交互的组件
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.IM_MD2HO.Collider">
+            <summary>
+            交互状态的变更
             </summary>
         </member>
         <member name="T:LibVRGeometry.HDTitaniumClampMessage">
@@ -353,6 +375,16 @@
         <member name="F:LibVRGeometry.HDTitaniumClampMessage.merge_speed">
             <summary>
             咬合的速度
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDTitaniumClampMessage.left">
+            <summary>
+            左边钳子
+            </summary>
+        </member>
+        <member name="F:LibVRGeometry.HDTitaniumClampMessage.right">
+            <summary>
+            右边钳子
             </summary>
         </member>
         <member name="T:LibVRGeometry.HDType">

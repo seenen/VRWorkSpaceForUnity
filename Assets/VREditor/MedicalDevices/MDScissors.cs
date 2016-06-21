@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LibVRGeometry;
 
 [ExecuteInEditMode]
 public class MDScissors : MedicalDevices
@@ -75,6 +76,13 @@ public class MDScissors : MedicalDevices
         openangle -= Time.deltaTime * merge_speed;
 
         Progress(openangle);
+    }
+    #endregion
+
+    #region 绑定组件
+    public void BindComponent(HDComponentMessage cm)
+    {
+
     }
     #endregion
 
