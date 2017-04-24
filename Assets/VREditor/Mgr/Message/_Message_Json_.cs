@@ -398,7 +398,7 @@ public class _Message_Json_ : MonoBehaviour
         mf.mesh = mesh;
         mf.mesh.RecalculateNormals();
         mf.mesh.RecalculateBounds();
-        mf.mesh.Optimize();
+        ;
 
     }
 }
